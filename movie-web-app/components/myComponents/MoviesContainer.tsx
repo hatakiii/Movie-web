@@ -1,4 +1,15 @@
 import React from "react";
+import Image from "next/image";
+
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 export const MoviesContainer = () => {
   const movieArray = [
@@ -70,8 +81,28 @@ export const MoviesContainer = () => {
         <span className="w-[114px] h-[32px]">Upcoming</span>
         <button className="w-[120px] h-[36px]">See more</button>
       </div>
-      <div className="w-[1277px] h-[910px] px-[80px] gap-[32px]">
-        {/* {movieArray.map((movie, index) => {})} */}
+      <div className="w-[1277px] h-[910px] px-[80px] gap-[32px] flex flex-wrap">
+        {movieArray.map((movie, index) => (
+          <div key={index}>
+            <Card className="w-[230px] bg-secondary p-0 overflow-hidden gap-2">
+              <CardContent className="p-0">
+                <Image
+                  src={movie.movieURL}
+                  alt={movie.movieName}
+                  width={230}
+                  height={340}
+                />
+              </CardContent>
+
+              <CardFooter className="flex flex-col items-start p-2">
+                <CardDescription className="flex gap-2">
+                  <span>{movie.rating}</span>
+                </CardDescription>
+                <CardTitle>{movie.movieName}</CardTitle>
+              </CardFooter>
+            </Card>
+          </div>
+        ))}
       </div>
     </div>
   );
