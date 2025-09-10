@@ -16,7 +16,7 @@ import OptionPopover from "@/components/myComponents/OptionPopover";
 
 export const MovieHeader = () => {
   return (
-    <div className="w-[100vw]  h-[59px]  flex justify-center items-center bg-amber-300">
+    <div className="w-[100vw]  h-[59px]  flex justify-center items-center">
       <div className="w-[100%] max-w-[1280px] h-[36px] flex place-content-between items-center mx-20">
         <div className="flex gap-2 w-[92px] h-[20px]">
           <img src="film.svg" alt="film logo" />

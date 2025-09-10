@@ -25,7 +25,35 @@ export default function OptionPopover() {
       </PopoverTrigger>
       <PopoverContent className="w-[150px] p-2">
         <div className="flex flex-col gap-1">
-          {["Option 1", "Option 2", "Option 3"].map((opt) => (
+          {[
+            "Action",
+            "Addventure",
+            "Animation",
+            "Biography",
+            "Comedy",
+            "Crime",
+            "Documentary",
+            "Drama",
+            "Family",
+            "Fantasy",
+            "Film-Noir",
+            "Game-Show",
+            "History",
+            "Horror",
+            "Music",
+            "Musical",
+            "Mystery",
+            "News",
+            "Reality-TV",
+            "Romance",
+            "Sci-Fi",
+            "Short",
+            "Sport",
+            "Talk-Show",
+            "Thriller",
+            "War",
+            "Western",
+          ].map((opt) => (
             <button
               key={opt}
               onClick={() => setSelected(opt)}

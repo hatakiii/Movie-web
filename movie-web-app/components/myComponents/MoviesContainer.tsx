@@ -11,81 +11,49 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-export const MoviesContainer = () => {
-  const movieArray = [
-    {
-      movieName: "Dear Santa",
-      rating: "6/10",
-      movieURL:
-        "https://m.media-amazon.com/images/M/MV5BZTFlY2FmZmMtZDliNy00YWI5LWEzMTItNzZlZGMwYzI2YTQ1XkEyXkFqcGc@._V1_.jpg",
-    },
-    {
-      movieName: "How to Train Your Dragon (Live Action)",
-      rating: "N/A",
-      movieURL:
-        "https://m.media-amazon.com/images/M/MV5BZTMxZjA0ZGUtZTE1NC00N2YxLWJlMTctZjkxNzQ1ZTY4NmM0XkEyXkFqcGc@._V1_.jpg",
-    },
-    {
-      movieName: "Alien: Romulus",
-      rating: "7/10",
-      movieURL:
-        "https://m.media-amazon.com/images/M/MV5BZTc1Njc1MTAtZGU2OC00NjY0LWI5MDEtOTBlMmVhZjE4NTQyXkEyXkFqcGc@._V1_.jpg",
-    },
-    {
-      movieName: "From the Ashes",
-      rating: "N/A",
-      movieURL:
-        "https://m.media-amazon.com/images/M/MV5BY2RlOTBiODctMmY2NC00YTUyLWExZTMtMzI5MDc5YmI0MmRmXkEyXkFqcGc@._V1_.jpg",
-    },
-    {
-      movieName: "Space Dogg",
-      rating: "N/A",
-      movieURL:
-        "https://m.media-amazon.com/images/M/MV5BZmRjMWM3MTAtNjg0NS00MjY3LWIwZTAtOTlkYTY4N2JlNjk5XkEyXkFqcGc@._V1_.jpg",
-    },
-    {
-      movieName: "The Order",
-      rating: "N/A",
-      movieURL:
-        "https://m.media-amazon.com/images/M/MV5BNjhkZmMwMTctM2QxOC00NjhhLThlODktYzc1OTJhNTAyNTAwXkEyXkFqcGc@._V1_.jpg",
-    },
-    {
-      movieName: "Y2K",
-      rating: "6.5/10",
-      movieURL:
-        "https://m.media-amazon.com/images/M/MV5BYzU1NDM2ZTMtNThmMy00OTk2LWE1ZjUtNDYzMTYwNGQzY2UyXkEyXkFqcGc@._V1_.jpg",
-    },
-    {
-      movieName: "Solo Leveling: ReAwakening",
-      rating: "N/A",
-      movieURL:
-        "https://m.media-amazon.com/images/M/MV5BNWZhMWFlZWMtNmE4MC00OGQwLThjOTQtNzI2NmE4ODVhMWYwXkEyXkFqcGc@._V1_.jpg",
-    },
-    {
-      movieName: "Get Away",
-      rating: "N/A",
-      movieURL:
-        "https://m.media-amazon.com/images/M/MV5BMTI3YjU0ZWEtOWU0OS00ZmU4LThhZTUtMzA2ZTYwOTJlOGI3XkEyXkFqcGc@._V1_.jpg",
-    },
-    {
-      movieName: "Sonic the Hedgehog 3",
-      rating: "N/A",
-      movieURL:
-        "https://m.media-amazon.com/images/M/MV5BNjEwMmQ4ZTItZGI2Yi00M2U3LTk0M2ItMjM1YjNjN2Y5Mzg3XkEyXkFqcGc@._V1_.jpg",
-    },
-  ];
+type movieType = {
+  movieName: string;
+  rating: string;
+  movieURL: string;
+};
 
+export const MoviesContainer = ({
+  movieArray,
+  categories,
+}: {
+  movieArray: movieType[];
+  categories: string;
+}) => {
   return (
-    <div className="w-[1437px] h-[978px] flex flex-col ">
-      <div className="w-[100%] h-[36px] flex place-content-around items-center px-[80px] mb-[32px]">
-        <span className="w-[114px] h-[32px]">Upcoming</span>
-        <button className="w-[120px] h-[36px]">See more</button>
+    <div className="w-[100vw] h-full flex flex-col mt-[52px]">
+      <div className="w-[100%] h-[36px] flex place-content-between items-center px-[80px] mb-[32px]">
+        <span className="w-[114px] h-[32px] justify-start text-text-text-foreground text-2xl font-semibold leading-loose flex items-center">
+          {categories}
+        </span>
+        <button className="w-[120px] h-[36px] gap-2 flex justify-start text-text-text-foreground text-sm font-medium leading-tight">
+          See more
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="lucide lucide-arrow-right-icon lucide-arrow-right w-4 h-4"
+          >
+            <path d="M5 12h14" />
+            <path d="m12 5 7 7-7 7" />
+          </svg>
+        </button>
       </div>
-      <div className="w-[1277px] h-[910px] px-[80px] gap-[32px] flex flex-wrap">
+      <div className="w-[100%] h-full px-[80px] gap-[32px] flex flex-wrap">
         {movieArray.map((movie, index) => (
           <div key={index}>
-            <Card className="w-[230px] bg-secondary p-0 overflow-hidden gap-2">
-              <CardContent className="p-0">
+            <Card className="w-[230px] h-[429px] bg-secondary p-0 overflow-hidden gap-2">
+              <CardContent className="p-0 h-[340px] overflow-hidden">
                 <Image
                   src={movie.movieURL}
                   alt={movie.movieName}
@@ -94,8 +62,9 @@ export const MoviesContainer = () => {
                 />
               </CardContent>
 
-              <CardFooter className="flex flex-col items-start p-2">
+              <CardFooter className="flex flex-col items-start p-2 h-[95px]">
                 <CardDescription className="flex gap-2">
+                  <img src="star.svg" alt="star" className="w-4 h-4 pt-[2px]" />
                   <span>{movie.rating}</span>
                 </CardDescription>
                 <CardTitle>{movie.movieName}</CardTitle>

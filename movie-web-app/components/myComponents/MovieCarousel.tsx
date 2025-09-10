@@ -37,7 +37,7 @@ export const MovieCarousel = () => {
       description:
         "Moana sets sail once again on a new adventure beyond the reef, meeting new allies and facing greater challenges to save her people.",
       movieURL:
-        "https://www.vitalthrills.com/wp-content/uploads/2024/09/moanaseptheader.jpg",
+        "https://bhpcollectibles.com/wp-content/uploads/2024/07/IMG_2275-scaled.jpg",
     },
   ];
 
