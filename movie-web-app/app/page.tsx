@@ -75,8 +75,6 @@ export default function Home() {
   ];
   return (
     <div className="">
-      <MovieHeader />
-
       {/* <Link href="./genre">Genre luu shiljine</Link> */}
       <MovieCarousel />
       <MoviesContainer movieArray={movieArray} categories={"Upcoming"} />
