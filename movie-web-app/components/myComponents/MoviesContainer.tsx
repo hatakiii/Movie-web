@@ -60,7 +60,7 @@ export const MoviesContainer = ({
               <CardFooter className="flex flex-col items-start p-2 h-[95px]">
                 <CardDescription className="flex gap-2">
                   <img src="star.svg" alt="star" className="w-4 h-4 pt-[2px]" />
-                  <span>{movie.title}</span>
+                  <span>{movie.vote_average}</span>
                 </CardDescription>
                 <CardTitle>{movie.title}</CardTitle>
               </CardFooter>
