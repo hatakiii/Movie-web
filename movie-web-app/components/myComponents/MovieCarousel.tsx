@@ -9,8 +9,13 @@ import {
 } from "@/components/ui/carousel";
 import { type CarouselApi } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
+import { MovieType } from "@/types";
 
-export const MovieCarousel = () => {
+type MovieCarouselProps = {
+  movies: MovieType[];
+};
+
+export const MovieCarousel = ({ movies }: MovieCarouselProps) => {
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
   const [count, setCount] = React.useState(0);
@@ -64,15 +69,15 @@ export const MovieCarousel = () => {
         className="w-full h-full relative overflow-hidden"
       >
         <CarouselContent>
-          {movieArray.map((movie, index) => (
+          {movies.slice(4, 7).map((movie, index) => (
             <CarouselItem
               key={index}
               className="basis-full flex-shrink-0 relative"
             >
               <img
                 className="w-full h-[600px] object-cover"
-                src={movie.movieURL}
-                alt={movie.movieName}
+                src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
+                alt={movie.title}
               />
               {/* Movie Description Overlay */}
               <div className="absolute bottom-[158px] left-[140px] text-white w-[404px] h-[264px] rounded-2xl ">
@@ -80,14 +85,14 @@ export const MovieCarousel = () => {
                   Now Playing:
                 </div>
                 <div className="w-[404px] h-[40px] justify-start text-white text-4xl font-bold leading-10">
-                  {movie.movieName}
+                  {movie.title}
                 </div>
                 <div className="w-[83px] h-[48px] text-sm opacity-80 flex justify-start items-center">
                   <img src="star.svg" alt="star" className="pt-2 pb-3" />
-                  {movie.rating}
+                  {movie.vote_average}
                 </div>
                 <p className="w-[302px] h-[80px] py-4 justify-start items-start text-neutral-50 text-xs font-normal leading-none">
-                  {movie.description}
+                  {movie.overview}
                 </p>
                 <button className="w-[145px] h-[40px] bg-white text-black rounded-2xl flex gap-2 items-center justify-center">
                   <img src="play.svg" alt="play" className="w-4 h-4" />

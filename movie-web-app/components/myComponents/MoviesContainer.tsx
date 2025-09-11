@@ -10,7 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { MovieType } from "@/app/page";
+import { MovieType } from "@/types";
 
 export const MoviesContainer = ({
   movieArray,
@@ -45,7 +45,7 @@ export const MoviesContainer = ({
         </button>
       </div>
       <div className="w-[100%] h-full px-[80px] gap-[32px] flex flex-wrap">
-        {movieArray.map((movie) => (
+        {movieArray.slice(0, 10).map((movie) => (
           <div key={movie.id}>
             <Card className="w-[230px] h-[429px] bg-secondary p-0 overflow-hidden gap-2">
               <CardContent className="p-0 h-[340px] overflow-hidden">
