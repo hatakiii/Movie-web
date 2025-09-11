@@ -10,18 +10,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-
-type movieType = {
-  movieName: string;
-  rating: string;
-  movieURL: string;
-};
+import { MovieType } from "@/app/page";
 
 export const MoviesContainer = ({
   movieArray,
   categories,
 }: {
-  movieArray: movieType[];
+  movieArray: MovieType[];
   categories: string;
 }) => {
   return (
@@ -50,13 +45,13 @@ export const MoviesContainer = ({
         </button>
       </div>
       <div className="w-[100%] h-full px-[80px] gap-[32px] flex flex-wrap">
-        {movieArray.map((movie, index) => (
-          <div key={index}>
+        {movieArray.map((movie) => (
+          <div key={movie.id}>
             <Card className="w-[230px] h-[429px] bg-secondary p-0 overflow-hidden gap-2">
               <CardContent className="p-0 h-[340px] overflow-hidden">
                 <Image
-                  src={movie.movieURL}
-                  alt={movie.movieName}
+                  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                  alt={movie.title}
                   width={230}
                   height={340}
                 />
@@ -65,9 +60,9 @@ export const MoviesContainer = ({
               <CardFooter className="flex flex-col items-start p-2 h-[95px]">
                 <CardDescription className="flex gap-2">
                   <img src="star.svg" alt="star" className="w-4 h-4 pt-[2px]" />
-                  <span>{movie.rating}</span>
+                  <span>{movie.title}</span>
                 </CardDescription>
-                <CardTitle>{movie.movieName}</CardTitle>
+                <CardTitle>{movie.title}</CardTitle>
               </CardFooter>
             </Card>
           </div>

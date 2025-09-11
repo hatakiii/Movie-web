@@ -13,7 +13,7 @@ import { Search } from "lucide-react";
 
 import { ModeToggle } from "@/components/myComponents/ThemeToggler";
 
-import { GenreDropdown } from "../main";
+import { GenreDropdown } from "@/components/main";
 
 export const MovieHeader = () => {
   return (
