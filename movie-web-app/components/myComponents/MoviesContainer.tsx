@@ -45,12 +45,12 @@ export const MoviesContainer = ({
         </button>
       </div>
       <div className="w-[100%] h-full px-[80px] gap-[32px] flex flex-wrap">
-        {movieArray.slice(0, 10).map((movie) => (
+        {movieArray.slice(0, 16).map((movie) => (
           <div key={movie.id}>
             <Card className="w-[230px] h-[429px] bg-secondary p-0 overflow-hidden gap-2">
               <CardContent className="p-0 h-[340px] overflow-hidden">
                 <Image
-                  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                  src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
                   alt={movie.title}
                   width={230}
                   height={340}

@@ -20,33 +20,6 @@ export const MovieCarousel = ({ movies }: MovieCarouselProps) => {
   const [current, setCurrent] = React.useState(0);
   const [count, setCount] = React.useState(0);
 
-  const movieArray = [
-    {
-      movieName: "Wicked",
-      rating: "6.9/10",
-      description:
-        "Elphaba, a misunderstood young woman with green skin, and Glinda, a popular girl, become friends at Shiz University. Their friendship is tested after meeting the Wizard of Oz.",
-      movieURL:
-        "https://bhpcollectibles.com/wp-content/uploads/2024/11/IMG_2419-scaled.jpg",
-    },
-    {
-      movieName: "Gladiator",
-      rating: "8.5/10",
-      description:
-        "A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery.",
-      movieURL:
-        "https://cdn.prod.website-files.com/61947db4da3d1c274b89af16/65090d729356cfba3434bb2a_Best%20Picture%20Rankdown%202.png",
-    },
-    {
-      movieName: "Moana 2",
-      rating: "N/A",
-      description:
-        "Moana sets sail once again on a new adventure beyond the reef, meeting new allies and facing greater challenges to save her people.",
-      movieURL:
-        "https://bhpcollectibles.com/wp-content/uploads/2024/07/IMG_2275-scaled.jpg",
-    },
-  ];
-
   React.useEffect(() => {
     if (!api) return;
     setCount(api.scrollSnapList().length);
@@ -69,14 +42,14 @@ export const MovieCarousel = ({ movies }: MovieCarouselProps) => {
         className="w-full h-full relative overflow-hidden"
       >
         <CarouselContent>
-          {movies.slice(4, 7).map((movie, index) => (
+          {movies.slice(0, 7).map((movie, index) => (
             <CarouselItem
               key={index}
               className="basis-full flex-shrink-0 relative"
             >
               <img
                 className="w-full h-[600px] object-cover"
-                src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
+                src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
                 alt={movie.title}
               />
               {/* Movie Description Overlay */}
