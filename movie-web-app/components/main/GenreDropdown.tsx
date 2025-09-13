@@ -16,38 +16,11 @@ import {
 import { ChevronDown, ChevronRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
+import { getMovieGenres } from "@/utils/get-data";
 
-const genres = [
-  "Action",
-  "Addventure",
-  "Animation",
-  "Biography",
-  "Comedy",
-  "Crime",
-  "Documentary",
-  "Drama",
-  "Family",
-  "Fantasy",
-  "Film-Noir",
-  "Game-Show",
-  "History",
-  "Horror",
-  "Music",
-  "Musical",
-  "Mystery",
-  "News",
-  "Reality-TV",
-  "Romance",
-  "Sci-Fi",
-  "Short",
-  "Sport",
-  "Talk-Show",
-  "Thriller",
-  "War",
-  "Western",
-];
+export async function GenreDropdown() {
+  const genresResponse = await getMovieGenres();
 
-export function GenreDropdown() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -69,11 +42,11 @@ export function GenreDropdown() {
           <DropdownMenuSeparator className="w-[100%]" />
         </div>
 
-        <DropdownMenuItem className="w-[497px] flex flex-wrap gap-4">
-          {genres.map((genre, index) => (
-            <Link href="/genre" key={index}>
+        <DropdownMenuItem className="w-[497px] flex flex-wrap gap-4 hover:!bg-transparent ">
+          {genresResponse.genres.map((genre: { id: number; name: string }) => (
+            <Link href={`/genre?id=${genre.id}`} key={genre.id}>
               <Badge variant="outline" className="h-[20px]">
-                {genre}
+                {genre.name}
                 <ChevronRight />
               </Badge>
             </Link>
