@@ -12,6 +12,7 @@ import {
 import { Search } from "lucide-react";
 
 import { ModeToggle } from "@/components/myComponents/ThemeToggler";
+import { Input } from "../ui/input";
 
 import { GenreDropdown } from "@/components/main";
 
@@ -23,15 +24,11 @@ export const MovieHeader = () => {
           <img src="film.svg" alt="film logo" />
           <span>Movie Z</span>
         </div>
-        <div className="w-[488px] h-[36px] flex gap-3">
+        <div className="flex gap-5">
           <GenreDropdown />
-          <div className="flex items-center border border-gray-300 rounded-xl px-3 py-2 w-[379px] h-[36px] bg-white">
-            <Search className="w-4 h-4 text-gray-500 mr-2" />
-            <input
-              type="text"
-              placeholder="Search..."
-              className="flex-1 outline-none text-sm"
-            />
+          <div className="flex items-center">
+            <Search className="-mr-8" />
+            <Input className="pl-10" placeholder="Search.." />
           </div>
         </div>
         <div className="w-9 h-9">

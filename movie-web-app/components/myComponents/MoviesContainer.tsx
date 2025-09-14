@@ -20,8 +20,8 @@ export const MoviesContainer = ({
   categories: string;
 }) => {
   return (
-    <div className="w-[100vw] h-full flex flex-col mt-[52px]">
-      <div className="w-[100%] h-[36px] flex place-content-between items-center px-[80px] mb-[32px]">
+    <div className="w-[1437px] h-full flex flex-col mt-[52px] justify-center items-center">
+      <div className="w-full h-[36px] flex place-content-between items-center px-[80px] mb-[32px]">
         <span className="w-[114px] h-[32px] justify-start text-text-text-foreground text-2xl font-semibold leading-loose flex items-center">
           {categories}
         </span>
@@ -44,10 +44,10 @@ export const MoviesContainer = ({
           </svg>
         </button>
       </div>
-      <div className="w-[100%] h-full px-[80px] gap-[32px] flex flex-wrap">
+      <div className="w-full h-full px-[80px] gap-8 flex flex-wrap">
         {movieArray.slice(0, 16).map((movie) => (
           <div key={movie.id}>
-            <Card className="w-[230px] h-[429px] bg-secondary p-0 overflow-hidden gap-2">
+            <Card className="w-[229.73px] h-[429px] bg-secondary p-0 overflow-hidden gap-2">
               <CardContent className="p-0 h-[340px] overflow-hidden">
                 <Image
                   src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}

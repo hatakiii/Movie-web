@@ -12,7 +12,7 @@ export async function HomePage() {
 
   console.log(upcomingMovies);
   return (
-    <div>
+    <div className="flex flex-col justify-center items-center">
       {/* <Link href="./genre">Genre luu shiljine</Link> */}
       <MovieCarousel movies={nowPlayingMovies.results} />
       <MoviesContainer

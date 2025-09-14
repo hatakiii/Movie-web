@@ -16,6 +16,7 @@ const Genre = async ({ searchParams }: GenrePageProps) => {
   console.log("FILTERDSEN KINONUUD", filteredMoviesResponse);
   return (
     <div>
+      {id}
       <div className="flex flex-wrap gap-3">
         {filteredMoviesResponse.results.map((movie) => (
           <MovieCard

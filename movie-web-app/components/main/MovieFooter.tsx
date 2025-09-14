@@ -2,7 +2,7 @@ export const MovieFooter = () => {
   return (
     <footer
       data-property-1="Dark mode"
-      className="w-full py-10 bg-Indigo-700 inline-flex justify-center items-start gap-12 bg-indigo-700"
+      className="w-full py-10 px-20 bg-Indigo-700 inline-flex justify-center items-start gap-12 bg-indigo-700 mt-[51px]"
     >
       <div className="flex-1 max-w-[1280px] flex justify-start items-start gap-28">
         <div className="self-stretch inline-flex flex-col justify-start items-start gap-10">
@@ -11,46 +11,40 @@ export const MovieFooter = () => {
               data-property-1="Dark Mode"
               className="inline-flex justify-start items-center gap-2"
             >
-              <div className="w-5 h-5 relative overflow-hidden">
-                <div className="w-4 h-4 left-[1.67px] top-[1.67px] absolute outline outline-offset-[-0.50px] outline-neutral-50" />
-              </div>
-              <div className="justify-center text-neutral-50 text-base font-bold font-['Inter'] leading-tight tracking-tight">
+              <img src="./film-white.svg" alt="" />
+              <div className="justify-center text-neutral-50 text-base font-bold  leading-tight tracking-tight">
                 Movie Z
               </div>
             </div>
-            <div className="justify-start text-neutral-50 text-sm font-normal font-['Inter'] leading-tight">
+            <div className="justify-start text-neutral-50 text-sm font-normal  leading-tight">
               © 2024 Movie Z. All Rights Reserved.
             </div>
           </div>
         </div>
         <div className="flex-1 flex justify-end items-start gap-24">
           <div className="h-48 inline-flex flex-col justify-start items-start gap-3">
-            <div className="self-stretch justify-start text-neutral-50 text-sm font-normal font-['Inter'] leading-tight">
+            <div className="self-stretch justify-start text-neutral-50 text-sm font-normal  leading-tight">
               Contact Information
             </div>
             <div className="flex flex-col justify-start items-start gap-6">
               <div className="inline-flex justify-start items-center gap-3">
-                <div className="w-4 h-4 relative overflow-hidden">
-                  <div className="w-3.5 h-2.5 left-[1.33px] top-[2.67px] absolute outline  outline-offset-[-0.50px] outline-neutral-50" />
-                </div>
+                <img src="./email.svg" alt="" />
                 <div className="inline-flex flex-col justify-start items-start">
-                  <div className="justify-start text-neutral-50 text-sm font-medium font-['Inter'] leading-tight">
+                  <div className="justify-start text-neutral-50 text-sm font-medium  leading-tight">
                     Email:
                   </div>
-                  <div className="justify-start text-neutral-50 text-sm font-normal font-['Inter'] leading-tight">
+                  <div className="justify-start text-neutral-50 text-sm font-normal  leading-tight">
                     support@movieZ.com
                   </div>
                 </div>
               </div>
               <div className="inline-flex justify-start items-center gap-3">
-                <div className="w-4 h-4 relative overflow-hidden">
-                  <div className="w-3.5 h-3.5 left-[1.41px] top-[1.33px] absolute outline  outline-offset-[-0.50px] outline-neutral-50" />
-                </div>
+                <img src="./phone.svg" alt="" />
                 <div className="inline-flex flex-col justify-start items-start">
-                  <div className="justify-start text-neutral-50 text-sm font-medium font-['Inter'] leading-tight">
+                  <div className="justify-start text-neutral-50 text-sm font-medium  leading-tight">
                     Phone:
                   </div>
-                  <div className="justify-start text-neutral-50 text-sm font-normal font-['Inter'] leading-tight">
+                  <div className="justify-start text-neutral-50 text-sm font-normal  leading-tight">
                     +976 (11) 123-4567
                   </div>
                 </div>
@@ -58,20 +52,20 @@ export const MovieFooter = () => {
             </div>
           </div>
           <div className="inline-flex flex-col justify-start items-start gap-3">
-            <div className="justify-start text-neutral-50 text-sm font-normal font-['Inter'] leading-tight">
+            <div className="justify-start text-neutral-50 text-sm font-normal  leading-tight">
               Follow us{" "}
             </div>
             <div className="inline-flex justify-start items-center gap-3">
-              <div className="justify-start text-neutral-50 text-sm font-medium font-['Inter'] leading-tight">
+              <div className="justify-start text-neutral-50 text-sm font-medium  leading-tight">
                 Facebook
               </div>
-              <div className="justify-start text-neutral-50 text-sm font-medium font-['Inter'] leading-tight">
+              <div className="justify-start text-neutral-50 text-sm font-medium  leading-tight">
                 Instagram
               </div>
-              <div className="justify-start text-neutral-50 text-sm font-medium font-['Inter'] leading-tight">
+              <div className="justify-start text-neutral-50 text-sm font-medium  leading-tight">
                 Twitter
               </div>
-              <div className="justify-start text-neutral-50 text-sm font-medium font-['Inter'] leading-tight">
+              <div className="justify-start text-neutral-50 text-sm font-medium  leading-tight">
                 Youtube
               </div>
             </div>
