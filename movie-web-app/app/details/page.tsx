@@ -1,6 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { DropdownMenuSeparator } from "@/components/ui/dropdown-menu";
 import { MovieCard } from "@/components/myComponents/MovieCard";
+import { MovieDetailsPageSkeleton } from "@/components/main/MovieDetailsPageSkeleton";
 
 const MovieDetails = () => {
   return (
@@ -146,6 +147,7 @@ const MovieDetails = () => {
           ))}
         </div>
       </div>
+      <MovieDetailsPageSkeleton />
     </div>
   );
 };
