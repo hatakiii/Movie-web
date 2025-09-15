@@ -13,12 +13,20 @@ type MovieCardProps = {
   title: string;
   score: number;
   image: string;
+  classStyle: string;
 };
 
-export const MovieCard = ({ title, score, image }: MovieCardProps) => {
+export const MovieCard = ({
+  title,
+  score,
+  image,
+  classStyle,
+}: MovieCardProps) => {
   return (
     <Link href="/detail">
-      <Card className="w-[229.73px] h-[429px] bg-secondary p-0 overflow-hidden gap-2">
+      <Card
+        className={`w-[229.73px] h-[429px] bg-secondary p-0 overflow-hidden gap-2 ${classStyle}`}
+      >
         <CardContent className="p-0 h-[340px] overflow-hidden">
           <Image
             src={`https://image.tmdb.org/t/p/w500/${image}`}

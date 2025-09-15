@@ -44,7 +44,10 @@ export async function GenreDropdown() {
 
         <DropdownMenuItem className="w-[497px] flex flex-wrap gap-4 hover:!bg-transparent ">
           {genresResponse.genres.map((genre: { id: number; name: string }) => (
-            <Link href={`/genre?id=${genre.id}`} key={genre.id}>
+            <Link
+              href={`/genre?id=${genre.id}&name=${genre.name}`}
+              key={genre.id}
+            >
               <Badge variant="outline" className="h-[20px]">
                 {genre.name}
                 <ChevronRight />
