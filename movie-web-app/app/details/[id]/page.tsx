@@ -1,19 +1,30 @@
 import { Badge } from "@/components/ui/badge";
 import { DropdownMenuSeparator } from "@/components/ui/dropdown-menu";
 import { MovieCard } from "@/components/myComponents/MovieCard";
-import { MovieDetailsPageSkeleton } from "@/components/main/MovieDetailsPageSkeleton";
+import { getMovieCredits, getMovieDetails } from "@/utils/get-data";
+import { MovieCreditType, MovieDetailType } from "@/types";
 
-const MovieDetails = () => {
+type DetailDynamicPageProps = {
+  params: Promise<{ id: string }>;
+};
+
+const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
+  const dynamicParams = await params;
+  const id = dynamicParams.id;
+  const movieDetail: MovieDetailType = await getMovieDetails(id);
+  const movieCredits: MovieCreditType = await getMovieCredits(id);
+
+  console.log("CREDITS", movieCredits);
   return (
     <div>
       <div className="max-w-[1080px] min-h-[524px] flex flex-col mt-[52px]">
         <div className="min-w-[100%] min-h-[72px] flex justify-between">
           <div className="min-w-[211px] min-h-[72px]">
             <p className="text-text-text-foreground text-4xl font-bold leading-10">
-              Wicked
+              {movieDetail.title}
             </p>
             <h1 className="text-text-text-foreground text-lg font-normal leading-7">
-              2024.11.26 · PG · 2h 40m
+              {movieDetail.release_date} · PG · {movieDetail.runtime}m
             </h1>
           </div>
           <div className="min-w-[83px] min-h-[64px]">
@@ -31,12 +42,12 @@ const MovieDetails = () => {
               <div>
                 <p className="text-text-text-muted-foreground text-base font-normal ">
                   <span className="text-text-text-foreground text-lg font-semibold leading-7 ">
-                    6.9
+                    {movieDetail.vote_average}
                   </span>
                   /10
                 </p>
                 <h1 className="text-text-text-muted-foreground text-xs font-normal text/text-muted-foreground">
-                  37k
+                  {movieDetail.vote_count}
                 </h1>
               </div>
             </div>
@@ -44,10 +55,21 @@ const MovieDetails = () => {
         </div>
         {/* Movie posters */}
         <div className="w-full h-[428px] flex justify-between mt-6">
-          <div className="w-[290px] h-[428px] bg-red-500"></div>
-          <div className="w-[760px] h-[428px] bg-yellow-600 relative">
+          <div className="w-[290px] h-[428px] bg-red-500">
+            <img
+              src={`https://image.tmdb.org/t/p/original${movieDetail.poster_path}`}
+              alt=""
+              width={290}
+              height={428}
+            />
+          </div>
+          <div className="w-[760px] h-[428px] relative">
+            <img
+              className="w-[760px] h-[428px]"
+              src={`https://image.tmdb.org/t/p/original${movieDetail.backdrop_path}`}
+            />
             <button className="w-[174px] h-[40px] absolute left-6 bottom-6 flex justify-between items-center">
-              <img src="./Icon Button.svg" alt="" />
+              <img src="./Icon Button.svg" alt="play_button" />
               <p className="w-20 h-6 text-white text-base font-normal align-middle justify-center">
                 Play trailer
               </p>
@@ -61,37 +83,33 @@ const MovieDetails = () => {
       {/* Description section */}
       <div className="max-w-[1080px] min-h-[271px] mt-8">
         <div className="w-full h-5 flex gap-3">
-          <Badge>Fairy Tale</Badge>
-          <Badge>Pop musical</Badge>
-          <Badge>Fantasy</Badge>
-          <Badge>Musical</Badge>
+          {movieDetail.genres.map((genre) => {
+            return <Badge key={genre.id}>{genre.name}</Badge>;
+          })}
         </div>
         <p
           className="w-full h-12 mt-5 text-text-text-foreground text-base font-normal
 "
         >
-          Elphaba, a misunderstood young woman because of her green skin, and
-          Glinda, a popular girl, become friends at Shiz University in the Land
-          of Oz. After an encounter with the Wonderful Wizard of Oz, their
-          friendship reaches a crossroads.
+          {movieDetail.overview}
         </p>
         <div className="w-full h-[41px] mt-5 flex">
           <h1 className="w-[64px] h-full mr-[53px] text-text-text-foreground text-base font-bold leading-7">
             Director
           </h1>
-          <p className="w-full h-full text-text-text-foreground text-base font-normal">
-            Names
-          </p>
+          <p className="w-full h-full text-text-text-foreground text-base font-normal"></p>
         </div>
         <div className="w-full h-[9px] flex">
           <DropdownMenuSeparator className="w-[100%]" />
         </div>
         <div className="w-full h-[41px] mt-5 flex">
           <h1 className="w-[64px] h-full mr-[53px] text-text-text-foreground text-base font-bold leading-7 ">
-            Director
+            Stars
           </h1>
           <p className="w-full h-full text-text-text-foreground text-base font-normal">
-            Names
+            {movieCredits.cast.slice(0, 5).map((star, i) => (
+              <span key={i}>{star.name} · </span>
+            ))}
           </p>
         </div>
         <div className="w-full h-[9px] flex">
@@ -99,7 +117,7 @@ const MovieDetails = () => {
         </div>
         <div className="w-full h-[41px] mt-5 flex">
           <h1 className="w-[64px] h-full mr-[53px] text-text-text-foreground text-base font-bold leading-7 ">
-            Director
+            Cast
           </h1>
           <p className="w-full h-full text-text-text-foreground text-base font-normal">
             Names
@@ -147,9 +165,8 @@ const MovieDetails = () => {
           ))}
         </div>
       </div>
-      <MovieDetailsPageSkeleton />
     </div>
   );
 };
 
-export default MovieDetails;
+export default DetailDynamicPage;

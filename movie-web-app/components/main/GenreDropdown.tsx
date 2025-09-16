@@ -42,13 +42,16 @@ export async function GenreDropdown() {
           <DropdownMenuSeparator className="w-[100%]" />
         </div>
 
-        <DropdownMenuItem className="w-[497px] flex flex-wrap gap-4 hover:!bg-transparent ">
+        <DropdownMenuItem className="w-[497px] flex flex-wrap gap-4 hover:!bg-transparent p-0">
           {genresResponse.genres.map((genre: { id: number; name: string }) => (
             <Link
               href={`/genre?id=${genre.id}&name=${genre.name}`}
               key={genre.id}
             >
-              <Badge variant="outline" className="h-[20px]">
+              <Badge
+                variant="outline"
+                className="h-[20px] active:bg-[rgba(0,0,0,0.4)]"
+              >
                 {genre.name}
                 <ChevronRight />
               </Badge>

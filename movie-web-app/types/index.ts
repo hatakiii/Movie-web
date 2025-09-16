@@ -16,3 +16,67 @@ export type movieResponseType = {
   totalPages: number;
   results: MovieType[];
 };
+
+export type MovieDetailType = {
+  title: string;
+  adult: boolean;
+  backdrop_path: string;
+  belongs_to_collection: {
+    id: number;
+    name: string;
+    poster_path: string;
+    backdrop_path: string;
+  };
+  budget: number;
+  genres: [
+    { id: number; name: string },
+    { id: number; name: string },
+    { id: number; name: string },
+    { id: number; name: string }
+  ];
+  homepage: string;
+  id: number;
+  imdb_id: string;
+
+  overview: string;
+
+  poster_path: string;
+  production_companies: [
+    {
+      id: number;
+      logo_path: string;
+      name: string;
+      origin_country: string;
+    },
+    {
+      id: number;
+      logo_path: string;
+      name: string;
+      origin_country: string;
+    },
+    {
+      id: number;
+      logo_path: string;
+      name: string;
+      origin_country: string;
+    }
+  ];
+
+  release_date: string;
+  runtime: number;
+
+  vote_average: number;
+  vote_count: number;
+};
+
+export type CrewType = {
+  id: number;
+  name: string;
+  job: string;
+};
+
+export type MovieCreditType = {
+  cast: CrewType[];
+  crew: CrewType[];
+  id: number;
+};

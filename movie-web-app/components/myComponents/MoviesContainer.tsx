@@ -11,6 +11,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { MovieType } from "@/types";
+import Link from "next/link";
 
 export const MoviesContainer = ({
   movieArray,
@@ -46,7 +47,7 @@ export const MoviesContainer = ({
       </div>
       <div className="w-full h-full px-[80px] gap-8 flex flex-wrap">
         {movieArray.slice(0, 16).map((movie) => (
-          <div key={movie.id}>
+          <Link href={`/details/${movie.id}`} key={movie.id}>
             <Card className="w-[229.73px] h-[429px] bg-secondary p-0 overflow-hidden gap-2">
               <CardContent className="p-0 h-[340px] overflow-hidden">
                 <Image
@@ -65,7 +66,7 @@ export const MoviesContainer = ({
                 <CardTitle>{movie.title}</CardTitle>
               </CardFooter>
             </Card>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

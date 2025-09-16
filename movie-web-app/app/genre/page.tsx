@@ -25,6 +25,7 @@ const Genre = async ({ searchParams }: GenrePageProps) => {
             title={movie.title}
             score={movie.vote_average}
             image={movie.poster_path}
+            id={movie.id}
             classStyle=""
           />
         ))}

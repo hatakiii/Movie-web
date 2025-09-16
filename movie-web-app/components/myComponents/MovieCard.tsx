@@ -13,6 +13,7 @@ type MovieCardProps = {
   title: string;
   score: number;
   image: string;
+  id: number;
   classStyle: string;
 };
 
@@ -20,10 +21,11 @@ export const MovieCard = ({
   title,
   score,
   image,
+  id,
   classStyle,
 }: MovieCardProps) => {
   return (
-    <Link href="/detail">
+    <Link href={`/details/${id}`}>
       <Card
         className={`w-[229.73px] h-[429px] bg-secondary p-0 overflow-hidden gap-2 ${classStyle}`}
       >
