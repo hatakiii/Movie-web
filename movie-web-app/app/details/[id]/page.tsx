@@ -1,8 +1,12 @@
 import { Badge } from "@/components/ui/badge";
 import { DropdownMenuSeparator } from "@/components/ui/dropdown-menu";
 import { MovieCard } from "@/components/myComponents/MovieCard";
-import { getMovieCredits, getMovieDetails } from "@/utils/get-data";
-import { MovieCreditType, MovieDetailType } from "@/types";
+import {
+  getMovieCredits,
+  getMovieDetails,
+  getSimilarMovies,
+} from "@/utils/get-data";
+import { MovieCreditType, MovieDetailType, SimilarMovieType } from "@/types";
 
 type DetailDynamicPageProps = {
   params: Promise<{ id: string }>;
@@ -13,8 +17,16 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
   const id = dynamicParams.id;
   const movieDetail: MovieDetailType = await getMovieDetails(id);
   const movieCredits: MovieCreditType = await getMovieCredits(id);
+  const similarMovies: SimilarMovieType = await getSimilarMovies(id);
 
-  console.log("CREDITS", movieCredits);
+  console.log("SIMILAR MOVIES", similarMovies);
+  const director = movieCredits.crew.find(
+    (person) => person.known_for_department === "Directing"
+  );
+  const writer = movieCredits.crew.filter(
+    (person) => person.known_for_department === "Writing"
+  );
+
   return (
     <div>
       <div className="max-w-[1080px] min-h-[524px] flex flex-col mt-[52px]">
@@ -69,7 +81,7 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
               src={`https://image.tmdb.org/t/p/original${movieDetail.backdrop_path}`}
             />
             <button className="w-[174px] h-[40px] absolute left-6 bottom-6 flex justify-between items-center">
-              <img src="./Icon Button.svg" alt="play_button" />
+              <img src="./icon_button.svg" alt="play_button" />
               <p className="w-20 h-6 text-white text-base font-normal align-middle justify-center">
                 Play trailer
               </p>
@@ -88,7 +100,7 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
           })}
         </div>
         <p
-          className="w-full h-12 mt-5 text-text-text-foreground text-base font-normal
+          className="w-full min-h-12 mt-5 text-text-text-foreground text-base font-normal
 "
         >
           {movieDetail.overview}
@@ -97,7 +109,32 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
           <h1 className="w-[64px] h-full mr-[53px] text-text-text-foreground text-base font-bold leading-7">
             Director
           </h1>
-          <p className="w-full h-full text-text-text-foreground text-base font-normal"></p>
+          <p className="w-full h-full text-text-text-foreground text-base font-normal">
+            {director ? (
+              <span>{director.name}</span>
+            ) : (
+              <span>No director found.</span>
+            )}
+          </p>
+        </div>
+        <div className="w-full h-[9px] flex">
+          <DropdownMenuSeparator className="w-[100%]" />
+        </div>
+        <div className="w-full h-[41px] mt-5 flex">
+          <h1 className="w-[64px] h-full mr-[53px] text-text-text-foreground text-base font-bold leading-7 ">
+            Writers
+          </h1>
+          <p className="w-full h-full text-text-text-foreground text-base font-normal">
+            {writer ? (
+              <span>
+                {writer.slice(0, 3).map((person, i) => (
+                  <span key={i}>{person.name} . </span>
+                ))}{" "}
+              </span>
+            ) : (
+              <span>No writer found.</span>
+            )}
+          </p>
         </div>
         <div className="w-full h-[9px] flex">
           <DropdownMenuSeparator className="w-[100%]" />
@@ -107,20 +144,9 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
             Stars
           </h1>
           <p className="w-full h-full text-text-text-foreground text-base font-normal">
-            {movieCredits.cast.slice(0, 5).map((star, i) => (
+            {movieCredits.cast.slice(0, 3).map((star, i) => (
               <span key={i}>{star.name} · </span>
             ))}
-          </p>
-        </div>
-        <div className="w-full h-[9px] flex">
-          <DropdownMenuSeparator className="w-[100%]" />
-        </div>
-        <div className="w-full h-[41px] mt-5 flex">
-          <h1 className="w-[64px] h-full mr-[53px] text-text-text-foreground text-base font-bold leading-7 ">
-            Cast
-          </h1>
-          <p className="w-full h-full text-text-text-foreground text-base font-normal">
-            Names
           </p>
         </div>
         <div className="w-full h-[9px] flex">
@@ -154,13 +180,14 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
         </div>
         {/* Movie Card Section */}
         <div className="max-w-[1080px] min-h-[372px] gap-8 flex">
-          {Array.from({ length: 5 }).map((_, index) => (
+          {similarMovies.results.slice(0, 5).map((movie, index) => (
             <MovieCard
-              key={index}
-              title="Gladiator"
-              score={12}
-              image="some"
-              classStyle={"w-[190px] h-[372px]"}
+              key={movie.id}
+              title={movie.title}
+              score={movie.vote_average}
+              image={movie.poster_path}
+              id={movie.id}
+              classStyle="w-[190px]"
             />
           ))}
         </div>

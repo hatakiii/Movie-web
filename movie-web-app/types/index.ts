@@ -72,11 +72,21 @@ export type MovieDetailType = {
 export type CrewType = {
   id: number;
   name: string;
-  job: string;
+  known_for_department: string;
 };
 
 export type MovieCreditType = {
   cast: CrewType[];
   crew: CrewType[];
   id: number;
+};
+export type ResultsType = {
+  poster_path: string;
+  vote_average: number;
+  title: string;
+  id: number;
+};
+
+export type SimilarMovieType = {
+  results: ResultsType[];
 };
