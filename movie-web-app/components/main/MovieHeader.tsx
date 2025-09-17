@@ -15,6 +15,7 @@ import { ModeToggle } from "@/components/myComponents/ThemeToggler";
 import { Input } from "../ui/input";
 
 import { GenreDropdown } from "@/components/main";
+import { SearchSection } from "./SearchSection";
 
 export const MovieHeader = () => {
   return (
@@ -26,10 +27,12 @@ export const MovieHeader = () => {
         </div>
         <div className="flex gap-5">
           <GenreDropdown />
+
           <div className="flex items-center">
             <Search className="-mr-8" />
-            <Input className="pl-10" placeholder="Search.." />
+            <SearchSection />
           </div>
+          {/* <Input className="pl-10" placeholder="Search.." /> */}
         </div>
         <div className="w-9 h-9">
           <ModeToggle />
