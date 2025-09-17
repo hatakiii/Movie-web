@@ -11,6 +11,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import Link from "next/link";
+import { SearchSectionResult } from "./SearchSectionResult";
 
 export const SearchSection = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -38,11 +39,17 @@ export const SearchSection = () => {
         placeholder="Search.."
       />
       <div>
-        <Popover open={isOpen}>
+        <Popover open={isOpen} onOpenChange={setIsOpen}>
           <PopoverTrigger className="hidden"></PopoverTrigger>
-          <PopoverContent className="w-80">
+          <PopoverContent
+            className="w-[577px]"
+            onOpenAutoFocus={(e) => e.preventDefault()}
+            onCloseAutoFocus={(e) => e.preventDefault()}
+          >
             {foundMovies?.results.slice(0, 5).map((movie, i) => {
-              return <div key={i}>{movie.title}</div>;
+              return (
+                <div key={i}>{<SearchSectionResult title={movie.title} />}</div>
+              );
             })}
             <Link href={`/search?value=${searchValue}`}>
               See all results for {searchValue}
