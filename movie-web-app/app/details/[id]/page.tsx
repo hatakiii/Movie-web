@@ -4,9 +4,17 @@ import { MovieCard } from "@/components/myComponents/MovieCard";
 import {
   getMovieCredits,
   getMovieDetails,
+  getMovieTrailer,
   getSimilarMovies,
 } from "@/utils/get-data";
-import { MovieCreditType, MovieDetailType, SimilarMovieType } from "@/types";
+import {
+  MovieCreditType,
+  MovieDetailType,
+  MovieTrailerType,
+  SimilarMovieType,
+} from "@/types";
+import { GoStarFill } from "react-icons/go";
+import { MdOutlinePlayCircleFilled } from "react-icons/md";
 
 type DetailDynamicPageProps = {
   params: Promise<{ id: string }>;
@@ -18,8 +26,9 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
   const movieDetail: MovieDetailType = await getMovieDetails(id);
   const movieCredits: MovieCreditType = await getMovieCredits(id);
   const similarMovies: SimilarMovieType = await getSimilarMovies(id);
+  const movieTrailer: MovieTrailerType = await getMovieTrailer(id);
 
-  console.log("SIMILAR MOVIES", similarMovies);
+  console.log("TRAILER", movieTrailer);
   const director = movieCredits.crew.find(
     (person) => person.known_for_department === "Directing"
   );
@@ -43,14 +52,11 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
             <p className="w-[83px] h-[16px] text-text-text-foreground text-xs font-medium">
               Rating
             </p>
-            <div className="w-[83px] h-[48px] flex">
-              <img
-                src="./star.svg"
-                alt=""
-                width={28}
-                height={28}
-                className="w-[28px] h-[48px]"
-              />
+            <div className="w-[83px] h-[48px] flex gap-1">
+              <div className="w-7 h-12 flex items-center justify-center">
+                <GoStarFill className="w-[28px] h-[28px]" />
+              </div>
+
               <div>
                 <p className="text-text-text-muted-foreground text-base font-normal ">
                   <span className="text-text-text-foreground text-lg font-semibold leading-7 ">
@@ -81,7 +87,7 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
               src={`https://image.tmdb.org/t/p/original${movieDetail.backdrop_path}`}
             />
             <button className="w-[174px] h-[40px] absolute left-6 bottom-6 flex justify-between items-center">
-              <img src="./icon_button.svg" alt="play_button" />
+              <MdOutlinePlayCircleFilled className="w-10 h-10" />
               <p className="w-20 h-6 text-white text-base font-normal align-middle justify-center">
                 Play trailer
               </p>

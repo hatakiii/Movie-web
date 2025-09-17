@@ -86,3 +86,18 @@ export const getSimilarMovies = async (id: string) => {
   const data = await res.json();
   return data;
 };
+
+export const getMovieTrailer = async (id: string) => {
+  const res = await fetch(
+    `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`,
+    {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${process.env.TMDB_ACCESS_KEY}`,
+      },
+    }
+  );
+  const data = await res.json();
+  return data;
+};

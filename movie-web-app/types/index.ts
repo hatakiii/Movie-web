@@ -90,3 +90,12 @@ export type ResultsType = {
 export type SimilarMovieType = {
   results: ResultsType[];
 };
+
+type trailerType = {
+  key: string;
+};
+
+export type MovieTrailerType = {
+  id: number;
+  results: trailerType[];
+};
