@@ -16,20 +16,24 @@ import { Input } from "../ui/input";
 
 import { GenreDropdown } from "@/components/main";
 import { SearchSection } from "./SearchSection";
+import Link from "next/link";
 
 export const MovieHeader = () => {
   return (
     <header className="w-[100vw]  h-[59px]  flex justify-center items-center">
       <div className="w-[100%] max-w-[1280px] h-[36px] flex place-content-between items-center mx-20">
-        <div className="flex gap-2 w-[92px] h-[20px]">
-          <img src="film.svg" alt="film logo" />
-          <span>Movie Z</span>
-        </div>
+        <Link href={`/`} className="flex gap-2 w-[92px] h-[20px]">
+          <div className="flex gap-2 w-[92px] h-[20px]">
+            <img src="film.svg" alt="film logo" />
+            <span>MovieZ</span>
+          </div>
+        </Link>
+
         <div className="flex gap-5">
           <GenreDropdown />
 
           <div className="flex items-center">
-            <Search className="-mr-8" />
+            <Search className="-mr-8 -mt-6" />
             <SearchSection />
           </div>
           {/* <Input className="pl-10" placeholder="Search.." /> */}

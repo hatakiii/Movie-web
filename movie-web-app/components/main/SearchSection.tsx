@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/popover";
 import Link from "next/link";
 import { SearchSectionResult } from "./SearchSectionResult";
+import { Search } from "lucide-react";
 
 export const SearchSection = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -40,7 +41,7 @@ export const SearchSection = () => {
       />
       <div>
         <Popover open={isOpen} onOpenChange={setIsOpen}>
-          <PopoverTrigger className="hidden"></PopoverTrigger>
+          <PopoverTrigger></PopoverTrigger>
           <PopoverContent
             className="w-[577px]"
             onOpenAutoFocus={(e) => e.preventDefault()}
@@ -48,7 +49,16 @@ export const SearchSection = () => {
           >
             {foundMovies?.results.slice(0, 5).map((movie, i) => {
               return (
-                <div key={i}>{<SearchSectionResult title={movie.title} />}</div>
+                <div key={i}>
+                  {
+                    <SearchSectionResult
+                      title={movie.title}
+                      score={movie.vote_average}
+                      releaseYear={movie.release_date}
+                      image={movie.poster_path}
+                    />
+                  }
+                </div>
               );
             })}
             <Link href={`/search?value=${searchValue}`}>

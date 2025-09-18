@@ -10,6 +10,7 @@ import {
 import { type CarouselApi } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { MovieType } from "@/types";
+import Link from "next/link";
 
 type MovieCarouselProps = {
   movies: MovieType[];
@@ -43,18 +44,23 @@ export const MovieCarousel = ({ movies }: MovieCarouselProps) => {
       >
         <CarouselContent>
           {movies
-            .slice(0, 13)
-            .filter((movie, index) => index !== 7)
+            .slice(0, 15)
+            .filter((movie, index) => index !== 7 && index !== 13)
             .map((movie, index) => (
               <CarouselItem
-                key={index}
                 className="basis-full flex-shrink-0 relative"
+                key={index}
               >
-                <img
+                <Link
                   className="w-full h-[600px] object-cover"
-                  src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
-                  alt={movie.title}
-                />
+                  href={`/details/${movie.id}`}
+                >
+                  <img
+                    className="w-full h-[600px] object-cover"
+                    src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
+                    alt={movie.title}
+                  />
+                </Link>
                 {/* Movie Description Overlay */}
                 <div className="absolute bottom-[158px] left-[140px] text-white w-[404px] h-[264px] rounded-2xl ">
                   <div className="w-full h-[24px] text-white text-base font-normal leading-normal">
@@ -81,7 +87,7 @@ export const MovieCarousel = ({ movies }: MovieCarouselProps) => {
         <CarouselPrevious className="left-11" />
         <CarouselNext className="right-11" />
         {/* Dots indicator */}
-        <div className="absolute bottom-[37px] left-1/2 flex gap-2">
+        <div className="absolute bottom-[37px]  left-[calc(45.5%)] flex gap-2">
           {Array.from({ length: count }).map((_, index) => (
             <button
               key={index}

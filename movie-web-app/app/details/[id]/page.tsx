@@ -13,6 +13,14 @@ import {
   MovieTrailerType,
   SimilarMovieType,
 } from "@/types";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { GoStarFill } from "react-icons/go";
 import { MdOutlinePlayCircleFilled } from "react-icons/md";
 
@@ -28,7 +36,14 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
   const similarMovies: SimilarMovieType = await getSimilarMovies(id);
   const movieTrailer: MovieTrailerType = await getMovieTrailer(id);
 
-  console.log("TRAILER", movieTrailer);
+  // console.log("TRAILER", movieTrailer);
+
+  const za = movieTrailer.results.filter((trail: any) =>
+    trail.type.includes("Trailer")
+  );
+
+  // console.log("za", za);
+
   const director = movieCredits.crew.find(
     (person) => person.known_for_department === "Directing"
   );
@@ -73,7 +88,7 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
         </div>
         {/* Movie posters */}
         <div className="w-full h-[428px] flex justify-between mt-6">
-          <div className="w-[290px] h-[428px] bg-red-500">
+          <div className="w-[290px] h-[428px] ">
             <img
               src={`https://image.tmdb.org/t/p/original${movieDetail.poster_path}`}
               alt=""
@@ -86,15 +101,32 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
               className="w-[760px] h-[428px]"
               src={`https://image.tmdb.org/t/p/original${movieDetail.backdrop_path}`}
             />
-            <button className="w-[174px] h-[40px] absolute left-6 bottom-6 flex justify-between items-center">
-              <MdOutlinePlayCircleFilled className="w-10 h-10" />
-              <p className="w-20 h-6 text-white text-base font-normal align-middle justify-center">
-                Play trailer
-              </p>
-              <p className="w-7.5 h-5 text-white text-sm font-normal align-middle justify-center">
-                2:35
-              </p>
-            </button>
+
+            <Dialog>
+              <DialogTrigger asChild>
+                <button
+                  className="w-[174px] h-[40px] absolute left-6 bottom-6 flex justify-between items-center"
+                  aria-controls="radix-_R_kpbn5ritqlb_"
+                >
+                  <MdOutlinePlayCircleFilled className="w-10 h-10" />
+                  <p className="w-20 h-6 text-white text-base font-normal align-middle justify-center">
+                    Play trailer
+                  </p>
+                  <p className="w-7.5 h-5 text-white text-sm font-normal align-middle justify-center"></p>
+                </button>
+              </DialogTrigger>
+              <DialogContent className="p-0 max-w-[1080px] sm:max-w-[1080px]">
+                <DialogTitle></DialogTitle>
+                <iframe
+                  width={1080}
+                  height={600}
+                  src={`https://www.youtube.com/embed/${za[0]?.key}`}
+                  title="Youtube video player"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                />
+              </DialogContent>
+            </Dialog>
           </div>
         </div>
       </div>
@@ -112,7 +144,7 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
           {movieDetail.overview}
         </p>
         <div className="w-full h-[41px] mt-5 flex">
-          <h1 className="w-[64px] h-full mr-[53px] text-text-text-foreground text-base font-bold leading-7">
+          <h1 className=" h-full mr-[53px] text-text-text-foreground text-base font-bold leading-7">
             Director
           </h1>
           <p className="w-full h-full text-text-text-foreground text-base font-normal">
@@ -134,7 +166,7 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
             {writer ? (
               <span>
                 {writer.slice(0, 3).map((person, i) => (
-                  <span key={i}>{person.name} . </span>
+                  <span key={i}>{person.name} · </span>
                 ))}{" "}
               </span>
             ) : (
