@@ -72,6 +72,15 @@ export const MovieCarousel = ({ movies }: MovieCarouselProps) => {
 };
 
 const MovieCarouselItem = ({ movie }: { movie: MovieType }) => {
+  // const getTrailerData = async () => {
+  //   const movieTrailer: MovieTrailerType = await getMovieTrailer(id);
+    
+  //     // console.log("TRAILER", movieTrailer);
+    
+  //     const za = movieTrailer.results.filter((trail: any) =>
+  //       trail.type.includes("Trailer")
+  //     );
+  // }
   return (
     <CarouselItem className="basis-full flex-shrink-0 relative">
       <Link
