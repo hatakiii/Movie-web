@@ -16,6 +16,7 @@ import {
 
 import { GoStarFill } from "react-icons/go";
 import { TrailerDialog } from "@/components/trailer/TrailerDialog";
+import { MdOutlinePlayCircleFilled } from "react-icons/md";
 
 type DetailDynamicPageProps = {
   params: Promise<{ id: string }>;
@@ -41,11 +42,11 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
 
   // console.log("TRAILER", movieTrailer);
 
-  const za = movieTrailer.results.filter((trail: any) =>
+  const trailer = movieTrailer.results.filter((trail: any) =>
     trail.type.includes("Trailer")
   );
 
-  // console.log("za", za);
+  // console.log("trailer", trailer);
 
   const director = movieCredits.crew.find(
     (person) => person.known_for_department === "Directing"
@@ -105,7 +106,18 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
               src={`https://image.tmdb.org/t/p/original${movieDetail.backdrop_path}`}
             />
             {/* There was Dialog */}
-            <TrailerDialog YTkey={za[0]?.key} />
+            <TrailerDialog YTkey={trailer[0]?.key}>
+              <div
+                className="w-[174px] h-[40px] absolute left-6 bottom-6 flex justify-between items-center"
+                aria-controls="radix-_R_kpbn5ritqlb_"
+              >
+                <MdOutlinePlayCircleFilled className="w-10 h-10" />
+                <p className="w-20 h-6 text-white text-base font-normal align-middle justify-center">
+                  Play trailer
+                </p>
+                <p className="w-7.5 h-5 text-white text-sm font-normal align-middle justify-center"></p>
+              </div>
+            </TrailerDialog>
             {/* End of Dialog */}
           </div>
         </div>

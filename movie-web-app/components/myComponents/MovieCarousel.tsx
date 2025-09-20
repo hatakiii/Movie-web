@@ -11,6 +11,9 @@ import { type CarouselApi } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { MovieType } from "@/types";
 import Link from "next/link";
+import { MovieTrailerType } from "@/types";
+import { getMovieTrailer } from "@/utils/get-data";
+import { TrailerDialog } from "../trailer/TrailerDialog";
 
 type MovieCarouselProps = {
   movies: MovieType[];
@@ -20,6 +23,11 @@ export const MovieCarousel = ({ movies }: MovieCarouselProps) => {
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
   const [count, setCount] = React.useState(0);
+
+  // ✅ Properly typed autoplay instance
+  const autoplay = React.useRef<ReturnType<typeof Autoplay>>(
+    Autoplay({ delay: 3000, stopOnInteraction: false })
+  );
 
   React.useEffect(() => {
     if (!api) return;
@@ -33,12 +41,7 @@ export const MovieCarousel = ({ movies }: MovieCarouselProps) => {
   return (
     <div className="w-full h-[600px] overflow-hidden">
       <Carousel
-        plugins={[
-          Autoplay({
-            delay: 3000, // autoplay every 3s
-            stopOnInteraction: false,
-          }),
-        ]}
+        plugins={[autoplay.current]}
         setApi={setApi}
         className="w-full h-full relative overflow-hidden"
       >
@@ -47,15 +50,17 @@ export const MovieCarousel = ({ movies }: MovieCarouselProps) => {
             .slice(0, 15)
             .filter((movie, index) => index !== 7 && index !== 13)
             .map((movie, index) => (
-              // There was Carousel item
-              <MovieCarouselItem movie={movie} key={index} />
-              //The end of carousel item
+              <MovieCarouselItem
+                movie={movie}
+                key={index}
+                autoplay={autoplay}
+              />
             ))}
         </CarouselContent>
         <CarouselPrevious className="left-11" />
         <CarouselNext className="right-11" />
         {/* Dots indicator */}
-        <div className="absolute bottom-[37px]  left-[calc(45.5%)] flex gap-2">
+        <div className="absolute bottom-[37px] left-[calc(45.5%)] flex gap-2">
           {Array.from({ length: count }).map((_, index) => (
             <button
               key={index}
@@ -71,16 +76,30 @@ export const MovieCarousel = ({ movies }: MovieCarouselProps) => {
   );
 };
 
-const MovieCarouselItem = ({ movie }: { movie: MovieType }) => {
-  // const getTrailerData = async () => {
-  //   const movieTrailer: MovieTrailerType = await getMovieTrailer(id);
-    
-  //     // console.log("TRAILER", movieTrailer);
-    
-  //     const za = movieTrailer.results.filter((trail: any) =>
-  //       trail.type.includes("Trailer")
-  //     );
-  // }
+const MovieCarouselItem = ({
+  movie,
+  autoplay,
+}: {
+  movie: MovieType;
+  autoplay: React.RefObject<ReturnType<typeof Autoplay>>;
+}) => {
+  const [trailerKey, setTrailerKey] = React.useState("");
+
+  const getTrailerData = async () => {
+    const movieTrailer: MovieTrailerType = await getMovieTrailer(
+      movie.id.toString()
+    );
+
+    const trailer = movieTrailer.results.filter((trail: any) =>
+      trail.type.includes("Trailer")
+    );
+    setTrailerKey(trailer[0]?.key || "");
+  };
+
+  React.useEffect(() => {
+    getTrailerData();
+  }, []);
+
   return (
     <CarouselItem className="basis-full flex-shrink-0 relative">
       <Link
@@ -108,10 +127,20 @@ const MovieCarouselItem = ({ movie }: { movie: MovieType }) => {
         <p className="w-[302px] min-h-20 py-4 justify-start items-start text-neutral-50 text-xs font-normal leading-none">
           {movie.overview}
         </p>
-        <button className="w-[145px] h-[40px] bg-white text-black rounded-2xl flex gap-2 items-center justify-center">
-          <img src="play.svg" alt="play" className="w-4 h-4" />
-          <span className="text-sm font-medium">Watch Trailer</span>
-        </button>
+
+        {/* ✅ Pause autoplay when trailer is open, resume when closed */}
+        <TrailerDialog
+          YTkey={trailerKey}
+          onOpenChange={(open) => {
+            if (open) autoplay.current?.stop();
+            else autoplay.current?.play();
+          }}
+        >
+          <div className="w-[145px] h-[40px] bg-white text-black rounded-2xl flex gap-2 items-center justify-center cursor-pointer">
+            <img src="play.svg" alt="play" className="w-4 h-4" />
+            <span className="text-sm font-medium">Watch Trailer</span>
+          </div>
+        </TrailerDialog>
       </div>
     </CarouselItem>
   );

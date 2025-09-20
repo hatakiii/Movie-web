@@ -8,9 +8,15 @@ import {
 } from "@/components/ui/dialog";
 import { MdOutlinePlayCircleFilled } from "react-icons/md";
 
-export const TrailerDialog = ({ YTkey }: { YTkey: string | undefined }) => {
+export const TrailerDialog = ({
+  YTkey,
+  onOpenChange,
+}: {
+  YTkey: string | undefined;
+  onOpenChange?: (open: boolean) => void;
+}) => {
   return (
-    <Dialog>
+    <Dialog onOpenChange={onOpenChange}>
       <DialogTrigger asChild>
         <button
           className="w-[174px] h-[40px] absolute left-6 bottom-6 flex justify-between items-center"
