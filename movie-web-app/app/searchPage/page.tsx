@@ -26,11 +26,11 @@ const page = async ({ searchParams }: SearchPageProps) => {
       </h1>
       <div className="max-w-[1280px] max-h-[826px] h-[826px] flex">
         {/* 5 results for "" */}
-        <div className="w-[804px] h-full flex flex-wrap">
-          <p>
+        <div className="w-[804px] h-full grid grid-cols-2 sm:grid-cols-3 gap-6 overflow-scroll">
+          <p className="col-span-full text-lg font-medium mb-2">
             {searchedMovies.total_results} results for {value}
           </p>
-          {searchedMovies.results.map((movie, index) => (
+          {searchedMovies.results.map((movie) => (
             <MovieCard
               key={movie.id}
               title={movie.title}

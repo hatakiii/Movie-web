@@ -6,7 +6,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { MdOutlinePlayCircleFilled } from "react-icons/md";
 
 export const TrailerDialog = ({
   YTkey,
