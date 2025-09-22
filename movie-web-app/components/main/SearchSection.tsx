@@ -47,9 +47,9 @@ export const SearchSection = () => {
             onOpenAutoFocus={(e) => e.preventDefault()}
             onCloseAutoFocus={(e) => e.preventDefault()}
           >
-            {foundMovies?.results.slice(0, 5).map((movie, i) => {
+            {foundMovies?.results.slice(0, 5).map((movie) => {
               return (
-                <div key={i}>
+                <Link href={`/details/${movie.id}`} key={movie.id}>
                   {
                     <SearchSectionResult
                       title={movie.title}
@@ -58,10 +58,10 @@ export const SearchSection = () => {
                       image={movie.poster_path}
                     />
                   }
-                </div>
+                </Link>
               );
             })}
-            <Link href={`/search?value=${searchValue}`}>
+            <Link href={`/searchPage?value=${searchValue}`}>
               See all results for {searchValue}
             </Link>
           </PopoverContent>

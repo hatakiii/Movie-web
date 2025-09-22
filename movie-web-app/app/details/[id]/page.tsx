@@ -107,16 +107,18 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
             />
             {/* There was Dialog */}
             <TrailerDialog YTkey={trailer[0]?.key}>
-              <div
-                className="w-[174px] h-[40px] absolute left-6 bottom-6 flex justify-between items-center"
-                aria-controls="radix-_R_kpbn5ritqlb_"
-              >
-                <MdOutlinePlayCircleFilled className="w-10 h-10" />
-                <p className="w-20 h-6 text-white text-base font-normal align-middle justify-center">
-                  Play trailer
-                </p>
-                <p className="w-7.5 h-5 text-white text-sm font-normal align-middle justify-center"></p>
-              </div>
+              {
+                <div
+                  className="w-[174px] h-[40px] absolute left-6 bottom-6 flex justify-between items-center"
+                  aria-controls="radix-_R_kpbn5ritqlb_"
+                >
+                  <MdOutlinePlayCircleFilled className="w-10 h-10" />
+                  <p className="w-20 h-6 text-white text-base font-normal align-middle justify-center">
+                    Play trailer
+                  </p>
+                  <p className="w-7.5 h-5 text-white text-sm font-normal align-middle justify-center"></p>
+                </div>
+              }
             </TrailerDialog>
             {/* End of Dialog */}
           </div>

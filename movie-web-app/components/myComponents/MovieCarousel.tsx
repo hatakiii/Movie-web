@@ -24,7 +24,6 @@ export const MovieCarousel = ({ movies }: MovieCarouselProps) => {
   const [current, setCurrent] = React.useState(0);
   const [count, setCount] = React.useState(0);
 
-  // ✅ Properly typed autoplay instance
   const autoplay = React.useRef<ReturnType<typeof Autoplay>>(
     Autoplay({ delay: 3000, stopOnInteraction: false })
   );
@@ -47,8 +46,8 @@ export const MovieCarousel = ({ movies }: MovieCarouselProps) => {
       >
         <CarouselContent>
           {movies
-            .slice(0, 15)
-            .filter((movie, index) => index !== 7 && index !== 13)
+            .slice(0, 16)
+            .filter((movie, index) => index !== 8)
             .map((movie, index) => (
               <MovieCarouselItem
                 movie={movie}
@@ -128,7 +127,6 @@ const MovieCarouselItem = ({
           {movie.overview}
         </p>
 
-        {/* ✅ Pause autoplay when trailer is open, resume when closed */}
         <TrailerDialog
           YTkey={trailerKey}
           onOpenChange={(open) => {

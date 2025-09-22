@@ -99,3 +99,17 @@ export type MovieTrailerType = {
   id: number;
   results: trailerType[];
 };
+
+export type SearchedMovieResultsType = {
+  poster_path: string;
+  vote_average: number;
+  title: string;
+  id: number;
+};
+
+export type SearcedMoviesType = {
+  page: number;
+  results: SearchedMovieResultsType[];
+  total_pages: number;
+  total_results: number;
+};

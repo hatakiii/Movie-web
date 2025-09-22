@@ -4,7 +4,7 @@ import { Skeleton } from "../ui/skeleton";
 export const HomePageSkeleton = () => {
   return (
     <div className="w-[1437px]">
-      <div className="w-full h-[600px] bg-background-bg-muted" />
+      <div className="w-full h-[600px] bg-background-bg-muted rounded-md bg-white mb-[52px]" />
       {/* Upcoming */}
       <div className="px-20 inline-flex flex-col justify-start items-start gap-8">
         <div className="w-[1277px] inline-flex justify-between items-start">

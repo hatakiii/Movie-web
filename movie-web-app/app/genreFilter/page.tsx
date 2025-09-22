@@ -4,52 +4,21 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { ChevronRight } from "lucide-react";
 import { getMovieGenres } from "@/utils/get-data";
-import { getSearchedMovies } from "@/utils/get-data";
-import { SearcedMoviesType } from "@/types";
-import { MovieCard } from "@/components/myComponents/MovieCard";
 
-type SearchPageProps = {
-  searchParams: Promise<{ value: string }>;
-};
-
-const page = async ({ searchParams }: SearchPageProps) => {
-  const params = await searchParams;
-  const value = params.value;
+const page = async () => {
   const genresResponse = await getMovieGenres();
-
-  const searchedMovies: SearcedMoviesType = await getSearchedMovies(value);
-  console.log("Oldson kinonuud", searchedMovies);
   return (
-    <div className="max-w-[1280px] min-h-[894px] flex flex-col gap-8 ">
-      <h1 className="max-w-[1280px] h-9 text-text-text-foreground text-3xl font-semibold">
-        Search Results
-      </h1>
+    <div className="w-[1280px] px-20 flex flex-col">
+      <div className="w-full h-[36px] text-text-text-foreground text-3xl font-semibold">
+        Search filter
+      </div>
+      {/* genres and it's movies */}
       <div className="max-w-[1280px] max-h-[826px] h-[826px] flex">
-        {/* 5 results for "" */}
-        <div className="w-[804px] h-full flex flex-wrap">
-          <p>
-            {searchedMovies.total_results} results for {value}
-          </p>
-          {searchedMovies.results.map((movie, index) => (
-            <MovieCard
-              key={movie.id}
-              title={movie.title}
-              score={movie.vote_average}
-              image={movie.poster_path}
-              id={movie.id}
-              classStyle=""
-            />
-          ))}
-        </div>
-        {/* Column separator */}
-        <div className="flex items-center space-x-4">
-          <Separator orientation="vertical" className="h-20" />
-        </div>
         {/* Search by genre */}
         <div className="min-w-[387px] min-h-[352px]">
           <div className="min-w-[213px] min-h-[60px]">
             <h1 className="text-text-text-foreground text-2xl font-semibold leading-loose">
-              Search by genre
+              Genres
             </h1>
             <p className="text-text-text-foreground text-base font-normal leading-normal">
               See lists of movies by genre
@@ -74,6 +43,15 @@ const page = async ({ searchParams }: SearchPageProps) => {
               )
             )}
           </div>
+        </div>
+        {/* Column separator */}
+        <div className="flex items-center space-x-4">
+          <Separator orientation="vertical" className="h-20" />
+        </div>
+
+        {/* 5 results for "" */}
+        <div className="w-[804px] h-full">
+          <p>81 titles in "Animation"</p>
         </div>
       </div>
     </div>

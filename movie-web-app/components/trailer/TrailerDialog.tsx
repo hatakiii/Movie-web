@@ -11,24 +11,15 @@ import { MdOutlinePlayCircleFilled } from "react-icons/md";
 export const TrailerDialog = ({
   YTkey,
   onOpenChange,
+  children,
 }: {
   YTkey: string | undefined;
   onOpenChange?: (open: boolean) => void;
+  children: React.ReactNode;
 }) => {
   return (
     <Dialog onOpenChange={onOpenChange}>
-      <DialogTrigger asChild>
-        <button
-          className="w-[174px] h-[40px] absolute left-6 bottom-6 flex justify-between items-center"
-          aria-controls="radix-_R_kpbn5ritqlb_"
-        >
-          <MdOutlinePlayCircleFilled className="w-10 h-10" />
-          <p className="w-20 h-6 text-white text-base font-normal align-middle justify-center">
-            Play trailer
-          </p>
-          <p className="w-7.5 h-5 text-white text-sm font-normal align-middle justify-center"></p>
-        </button>
-      </DialogTrigger>
+      <DialogTrigger asChild>{children}</DialogTrigger>
 
       <DialogContent className="p-0 max-w-[1080px] sm:max-w-[1080px]">
         <DialogTitle></DialogTitle>

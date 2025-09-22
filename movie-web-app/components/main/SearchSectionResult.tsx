@@ -4,7 +4,7 @@ type MovieType = {
   releaseYear: string;
   image: string;
 };
-
+import { IoStar } from "react-icons/io5";
 export const SearchSectionResult = ({
   title,
   score,
@@ -26,8 +26,8 @@ export const SearchSectionResult = ({
             <div className="w-full h-[28px] text-text-text-foreground text-xl font-semibold leading-7">
               {title}
             </div>
-            <div className="w-full h-[23px] flex">
-              <img src="star.svg" className="w-4 h-4" />
+            <div className="w-full h-[23px] flex gap-1">
+              <IoStar />
               <p className="text-[14px] ">
                 {score}
                 <span className="text-[12px]">/10</span>
