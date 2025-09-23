@@ -10,7 +10,7 @@ export async function HomePage() {
     "now_playing"
   );
 
-  console.log(upcomingMovies);
+  // console.log(upcomingMovies);
   return (
     <div className="flex flex-col justify-center items-center">
       {/* <Link href="./genre">Genre luu shiljine</Link> */}

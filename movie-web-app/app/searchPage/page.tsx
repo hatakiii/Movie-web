@@ -10,12 +10,21 @@ import { MovieCard } from "@/components/myComponents/MovieCard";
 import { MoviePagination } from "@/components/myComponents/MoviePagination";
 
 type SearchPageProps = {
-  searchParams: Promise<{ value: string }>;
+  searchParams: Promise<{
+    value: string;
+    page: string;
+    name: string;
+    id: string;
+  }>;
 };
 
 const page = async ({ searchParams }: SearchPageProps) => {
   const params = await searchParams;
   const value = params.value;
+  const id = params.id;
+  const page = params.page || "1";
+  const name = params.name;
+
   const genresResponse = await getMovieGenres();
 
   const searchedMovies: SearcedMoviesType = await getSearchedMovies(value);
@@ -44,7 +53,14 @@ const page = async ({ searchParams }: SearchPageProps) => {
             ))}
           </div>
 
-          <MoviePagination />
+          <MoviePagination
+            whichPage="genre"
+            totalResults={searchedMovies.total_results}
+            whichId={id}
+            whichName={name}
+            pageIndex={searchedMovies.page}
+            perPage={20}
+          />
         </div>
         {/* Column separator */}
         <div className="flex items-center space-x-4">

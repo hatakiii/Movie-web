@@ -13,6 +13,7 @@ import {
 import Link from "next/link";
 import { SearchSectionResult } from "./SearchSectionResult";
 import { Search } from "lucide-react";
+import page from "@/app/searchPage/page";
 
 export const SearchSection = () => {
   const [searchValue, setSearchValue] = useState("");

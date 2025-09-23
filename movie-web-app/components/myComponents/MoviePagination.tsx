@@ -32,7 +32,12 @@ export function MoviePagination({
   const calculatedPages = Math.ceil(totalResults / perPage);
 
   // Take the smaller of real pages vs API max
-  const safeTotalPages = Math.min(calculatedPages, apiMaxPages);
+  const safeTotalPages = Math.min(
+    isNaN(Math.ceil(totalResults / perPage))
+      ? 0
+      : Math.ceil(totalResults / perPage),
+    apiMaxPages
+  );
 
   const getPageNumbers = () => {
     const pages = [];
