@@ -7,6 +7,7 @@ import { getMovieGenres } from "@/utils/get-data";
 import { getSearchedMovies } from "@/utils/get-data";
 import { SearcedMoviesType } from "@/types";
 import { MovieCard } from "@/components/myComponents/MovieCard";
+import { MoviePagination } from "@/components/myComponents/MoviePagination";
 
 type SearchPageProps = {
   searchParams: Promise<{ value: string }>;
@@ -24,22 +25,26 @@ const page = async ({ searchParams }: SearchPageProps) => {
       <h1 className="max-w-[1280px] h-9 text-text-text-foreground text-3xl font-semibold">
         Search Results
       </h1>
-      <div className="max-w-[1280px] max-h-[826px] h-[826px] flex">
+      <div className="max-w-[1280px] min-h-[826px]  flex">
         {/* 5 results for "" */}
-        <div className="w-[804px] h-full grid grid-cols-2 sm:grid-cols-3 gap-6 overflow-scroll">
+        <div className="w-[804px] h-full flex flex-col sm:grid-cols-3 gap-6">
           <p className="col-span-full text-lg font-medium mb-2">
-            {searchedMovies.total_results} results for {value}
+            {searchedMovies.total_results} results for "{value}"
           </p>
-          {searchedMovies.results.map((movie) => (
-            <MovieCard
-              key={movie.id}
-              title={movie.title}
-              score={movie.vote_average}
-              image={movie.poster_path}
-              id={movie.id}
-              classStyle=""
-            />
-          ))}
+          <div className="flex flex-wrap gap-8">
+            {searchedMovies.results.map((movie) => (
+              <MovieCard
+                key={movie.id}
+                title={movie.title}
+                score={movie.vote_average}
+                image={movie.poster_path}
+                id={movie.id}
+                classStyle=""
+              />
+            ))}
+          </div>
+
+          <MoviePagination />
         </div>
         {/* Column separator */}
         <div className="flex items-center space-x-4">

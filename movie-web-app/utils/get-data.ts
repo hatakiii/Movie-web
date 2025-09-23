@@ -117,3 +117,22 @@ export const getSearchedMovies = async (searchValue: string) => {
   console.log("Data irlee", data);
   return data;
 };
+
+export const getMoviesByGenre = async (
+  genreIds: string,
+  page: number | string
+) => {
+  const res = await fetch(
+    `https://api.themoviedb.org/3/discover/movie?language=en&with_genres=${genreIds}&page=${page}`,
+    {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_KEY_TMDB_ACCESS_KEY}`,
+      },
+    }
+  );
+  const data = await res.json();
+  console.log("Data irlee", data);
+  return data;
+};

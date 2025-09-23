@@ -36,6 +36,7 @@ export const SearchSection = () => {
       <Input
         value={searchValue}
         onChange={handleChange}
+        onClick={() => setIsOpen(true)}
         className="pl-10"
         placeholder="Search.."
       />
@@ -49,20 +50,27 @@ export const SearchSection = () => {
           >
             {foundMovies?.results.slice(0, 5).map((movie) => {
               return (
-                <Link href={`/details/${movie.id}`} key={movie.id}>
-                  {
-                    <SearchSectionResult
-                      title={movie.title}
-                      score={movie.vote_average}
-                      releaseYear={movie.release_date}
-                      image={movie.poster_path}
-                    />
-                  }
+                <Link
+                  href={`/details/${movie.id}`}
+                  key={movie.id}
+                  passHref
+                  onClick={() => setIsOpen(false)}
+                >
+                  <SearchSectionResult
+                    title={movie.title}
+                    score={movie.vote_average}
+                    releaseYear={movie.release_date}
+                    image={movie.poster_path}
+                  />
                 </Link>
               );
             })}
-            <Link href={`/searchPage?value=${searchValue}`}>
-              See all results for {searchValue}
+
+            <Link
+              href={`/searchPage?value=${searchValue}`}
+              onClick={() => setIsOpen(false)}
+            >
+              See all results for "{searchValue}"
             </Link>
           </PopoverContent>
         </Popover>
