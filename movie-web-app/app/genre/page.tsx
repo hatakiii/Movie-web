@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { ChevronRight } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
+import { MoviePagination } from "@/components/myComponents/MoviePagination";
 
 type GenrePageProps = {
   searchParams: Promise<{ id: string; name: string }>;
@@ -64,20 +65,24 @@ const Genre = async ({ searchParams }: GenrePageProps) => {
         </div>
 
         {/* 5 results for "" */}
-        <div className="w-[804px] h-full flex flex-wrap">
-          <p>
-            "{filteredMoviesResponse.total_results}" titles in "{name}"
+        <div className="w-[816px] h-full flex flex-col sm:grid-cols-3 gap-6">
+          <p className="col-span-full text-lg font-medium mb-2">
+            {filteredMoviesResponse.total_results} titles in "{name}"
           </p>
-          {filteredMoviesResponse.results.map((movie) => (
-            <MovieCard
-              key={movie.id}
-              title={movie.title}
-              score={movie.vote_average}
-              image={movie.poster_path}
-              id={movie.id}
-              classStyle=""
-            />
-          ))}
+          <div className="flex flex-wrap gap-4">
+            {filteredMoviesResponse.results.map((movie) => (
+              <MovieCard
+                key={movie.id}
+                title={movie.title}
+                score={movie.vote_average}
+                image={movie.poster_path}
+                id={movie.id}
+                classStyle="w-[165px] h-[331px]"
+              />
+            ))}
+          </div>
+
+          <MoviePagination />
         </div>
       </div>
     </div>

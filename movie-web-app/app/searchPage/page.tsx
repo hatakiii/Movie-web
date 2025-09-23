@@ -26,7 +26,7 @@ const page = async ({ searchParams }: SearchPageProps) => {
         Search Results
       </h1>
       <div className="max-w-[1280px] min-h-[826px]  flex">
-        {/* 5 results for "" */}
+        {/* Movie cards section */}
         <div className="w-[804px] h-full flex flex-col sm:grid-cols-3 gap-6">
           <p className="col-span-full text-lg font-medium mb-2">
             {searchedMovies.total_results} results for "{value}"
