@@ -9,17 +9,19 @@ import { Separator } from "@/components/ui/separator";
 import { MoviePagination } from "@/components/myComponents/MoviePagination";
 
 type GenrePageProps = {
-  searchParams: Promise<{ id: string; name: string }>;
+  searchParams: Promise<{ id: string; name: string; page: string }>;
 };
 
 const Genre = async ({ searchParams }: GenrePageProps) => {
   const params = await searchParams;
   const id = params.id;
+  const page = params.page || "1";
   const name = params.name; // //localhost:3000/genre?id=27&name=Horror endees Horror geder neriig ni avch bfa
   const genresResponse = await getMovieGenres();
 
   const filteredMoviesResponse: movieResponseType = await getMoviesByGenreId(
-    id
+    id,
+    page
   );
   console.log("FILTERDSEN KINONUUD", filteredMoviesResponse);
   return (
@@ -82,7 +84,14 @@ const Genre = async ({ searchParams }: GenrePageProps) => {
             ))}
           </div>
 
-          <MoviePagination />
+          <MoviePagination
+            whichPage="genre"
+            totalResults={filteredMoviesResponse.total_results}
+            whichId={id}
+            whichName={name}
+            pageIndex={filteredMoviesResponse.page}
+            perPage={20}
+          />
         </div>
       </div>
     </div>
