@@ -90,6 +90,9 @@ export type ResultsType = {
 
 export type SimilarMovieType = {
   results: ResultsType[];
+  page: number;
+  total_pages: number;
+  total_results: number;
 };
 
 type trailerType = {

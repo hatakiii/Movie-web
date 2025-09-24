@@ -8,6 +8,7 @@ import { getSearchedMovies } from "@/utils/get-data";
 import { SearcedMoviesType } from "@/types";
 import { MovieCard } from "@/components/myComponents/MovieCard";
 import { MoviePagination } from "@/components/myComponents/MoviePagination";
+import { MoviePaginationSearch } from "@/components/myComponents/MoviePaginationSearch";
 
 type SearchPageProps = {
   searchParams: Promise<{
@@ -27,7 +28,10 @@ const page = async ({ searchParams }: SearchPageProps) => {
 
   const genresResponse = await getMovieGenres();
 
-  const searchedMovies: SearcedMoviesType = await getSearchedMovies(value);
+  const searchedMovies: SearcedMoviesType = await getSearchedMovies(
+    value,
+    page
+  );
   console.log("Oldson kinonuud", searchedMovies);
   return (
     <div className="max-w-[1280px] min-h-[894px] flex flex-col gap-8 ">
@@ -53,11 +57,10 @@ const page = async ({ searchParams }: SearchPageProps) => {
             ))}
           </div>
 
-          <MoviePagination
-            whichPage="genre"
+          <MoviePaginationSearch
+            whichPage="SearchPage"
             totalResults={searchedMovies.total_results}
-            whichId={id}
-            whichName={name}
+            searchValue={value}
             pageIndex={searchedMovies.page}
             perPage={20}
           />

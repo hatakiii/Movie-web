@@ -72,9 +72,9 @@ export const getMovieCredits = async (id: string) => {
   return data;
 };
 
-export const getSimilarMovies = async (id: string) => {
+export const getSimilarMovies = async (id: string, page: string) => {
   const res = await fetch(
-    `https://api.themoviedb.org/3/movie/${id}/similar?language=en-US&page=1`,
+    `https://api.themoviedb.org/3/movie/${id}/similar?language=en-US&page=${page}`,
     {
       method: "GET",
       headers: {
@@ -102,9 +102,9 @@ export const getMovieTrailer = async (id: string) => {
   return data;
 };
 
-export const getSearchedMovies = async (searchValue: string) => {
+export const getSearchedMovies = async (searchValue: string, page: string) => {
   const res = await fetch(
-    `https://api.themoviedb.org/3/search/movie?query=${searchValue}&language=en-US&page=${1}`,
+    `https://api.themoviedb.org/3/search/movie?query=${searchValue}&language=en-US&page=${page}`,
     {
       method: "GET",
       headers: {

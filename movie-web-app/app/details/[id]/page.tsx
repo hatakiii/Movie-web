@@ -17,6 +17,8 @@ import {
 import { GoStarFill } from "react-icons/go";
 import { TrailerDialog } from "@/components/trailer/TrailerDialog";
 import { MdOutlinePlayCircleFilled } from "react-icons/md";
+import Link from "next/link";
+import page from "@/app/searchPage/page";
 
 type DetailDynamicPageProps = {
   params: Promise<{ id: string }>;
@@ -37,7 +39,7 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
   const id = dynamicParams.id;
   const movieDetail: MovieDetailType = await getMovieDetails(id);
   const movieCredits: MovieCreditType = await getMovieCredits(id);
-  const similarMovies: SimilarMovieType = await getSimilarMovies(id);
+  const similarMovies: SimilarMovieType = await getSimilarMovies(id, "1");
   const movieTrailer: MovieTrailerType = await getMovieTrailer(id);
 
   // console.log("TRAILER", movieTrailer);
@@ -191,24 +193,26 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
           <span className="w-full h-[32px] justify-start text-text-text-foreground text-2xl font-semibold leading-loose flex items-center">
             More like this
           </span>
-          <button className="w-[120px] h-[36px] gap-2 flex justify-start text-text-text-foreground text-sm font-medium leading-tight">
-            See more
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="lucide lucide-arrow-right-icon lucide-arrow-right w-4 h-4"
-            >
-              <path d="M5 12h14" />
-              <path d="m12 5 7 7-7 7" />
-            </svg>
-          </button>
+          <Link href={`/moreLikeThis/${id}`}>
+            <button className="w-[120px] h-[36px] gap-2 flex justify-start text-text-text-foreground text-sm font-medium leading-tight">
+              See more
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="lucide lucide-arrow-right-icon lucide-arrow-right w-4 h-4"
+              >
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" />
+              </svg>
+            </button>
+          </Link>
         </div>
         {/* Movie Card Section */}
         <div className="max-w-[1080px] min-h-[372px] gap-8 flex">
