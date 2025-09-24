@@ -14,14 +14,15 @@ import {
 import Image from "next/image";
 
 type MorePageProps = {
-  searchParams: Promise<{ title: string }>;
+  searchParams: Promise<{ title: string; page: string | number }>;
 };
 
 const MorePage = async ({ searchParams }: MorePageProps) => {
   const params = await searchParams;
   const title = params.title;
+  const page = params.page;
 
-  const movieRes: movieResponseType = await getMoviesList(title);
+  const movieRes: movieResponseType = await getMoviesList(title, "1");
   console.log("movieRes", movieRes);
   return (
     <div className="w-full h-full px-[80px] gap-8 flex flex-wrap">
