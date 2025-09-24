@@ -18,14 +18,17 @@ export async function HomePage() {
       <MoviesContainer
         movieArray={upcomingMovies.results}
         categories={"Upcoming"}
+        link="upcoming"
       />
       <MoviesContainer
         movieArray={popularMovies.results}
         categories={"Popular"}
+        link="popular"
       />
       <MoviesContainer
         movieArray={topRatedMovies.results}
         categories={"Top Rated"}
+        link="top_rated"
       />
       {/* <MoviesContainer movieArray={movieArray} categories={"Popular"} />
       <MoviesContainer movieArray={movieArray} categories={"Top Rated"} /> */}

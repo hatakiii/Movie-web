@@ -16,9 +16,11 @@ import Link from "next/link";
 export const MoviesContainer = ({
   movieArray,
   categories,
+  link,
 }: {
   movieArray: MovieType[];
   categories: string;
+  link: string;
 }) => {
   return (
     <div className="w-[1437px] h-full flex flex-col mt-[52px] justify-center items-center">
@@ -26,24 +28,26 @@ export const MoviesContainer = ({
         <span className="w-[114px] h-[32px] justify-start text-text-text-foreground text-2xl font-semibold leading-loose flex items-center">
           {categories}
         </span>
-        <button className="w-[120px] h-[36px] gap-2 flex justify-start text-text-text-foreground text-sm font-medium leading-tight">
-          See more
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="lucide lucide-arrow-right-icon lucide-arrow-right w-4 h-4"
-          >
-            <path d="M5 12h14" />
-            <path d="m12 5 7 7-7 7" />
-          </svg>
-        </button>
+        <Link href={`/more?title=${link}`}>
+          <button className="w-[120px] h-[36px] gap-2 flex justify-start text-text-text-foreground text-sm font-medium leading-tight">
+            See more
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="lucide lucide-arrow-right-icon lucide-arrow-right w-4 h-4"
+            >
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
+          </button>
+        </Link>
       </div>
       <div className="w-full h-full px-[80px] gap-8 flex flex-wrap">
         {movieArray.slice(0, 16).map((movie) => (
