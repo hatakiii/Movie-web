@@ -14,6 +14,7 @@ import Link from "next/link";
 import { MovieTrailerType } from "@/types";
 import { getMovieTrailer } from "@/utils/get-data";
 import { TrailerDialog } from "../trailer/TrailerDialog";
+import Image from "next/image";
 
 type MovieCarouselProps = {
   movies: MovieType[];
@@ -47,7 +48,7 @@ export const MovieCarousel = ({ movies }: MovieCarouselProps) => {
         <CarouselContent>
           {movies
             .slice(0, 16)
-            .filter((movie, index) => index !== 8)
+            .filter((movie, index) => index !== 0)
             .map((movie, index) => (
               <MovieCarouselItem
                 movie={movie}
@@ -89,15 +90,16 @@ const MovieCarouselItem = ({
       movie.id.toString()
     );
 
-    const trailer = movieTrailer.results.filter((trail: any) =>
+    const trailer = movieTrailer.results.filter((trail) =>
       trail.type.includes("Trailer")
     );
+    console.log("Mytrailer", trailer);
     setTrailerKey(trailer[0]?.key || "");
   };
 
   React.useEffect(() => {
     getTrailerData();
-  }, []);
+  });
 
   return (
     <CarouselItem className="basis-full flex-shrink-0 relative">
@@ -105,10 +107,12 @@ const MovieCarouselItem = ({
         className="w-full h-[600px] object-cover"
         href={`/details/${movie.id}`}
       >
-        <img
+        <Image
           className="w-full h-[600px] object-cover"
           src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
           alt={movie.title}
+          width={1440}
+          height={600}
         />
       </Link>
       {/* Movie Description Overlay */}
@@ -120,7 +124,13 @@ const MovieCarouselItem = ({
           {movie.title}
         </div>
         <div className="w-full min-h-[48px] text-sm opacity-80 flex justify-start items-center">
-          <img src="star.svg" alt="star" className="pt-2 pb-3" />
+          <Image
+            src="star.svg"
+            alt="star"
+            className="pt-2 pb-3"
+            width={28}
+            height={28}
+          />
           {movie.vote_average}
         </div>
         <p className="w-[302px] min-h-20 py-4 justify-start items-start text-neutral-50 text-xs font-normal leading-none">
@@ -135,7 +145,13 @@ const MovieCarouselItem = ({
           }}
         >
           <div className="w-[145px] h-[40px] bg-white text-black rounded-2xl flex gap-2 items-center justify-center cursor-pointer">
-            <img src="play.svg" alt="play" className="w-4 h-4" />
+            <Image
+              src="play.svg"
+              alt="play"
+              className="w-4 h-4"
+              width={16}
+              height={16}
+            />
             <span className="text-sm font-medium">Watch Trailer</span>
           </div>
         </TrailerDialog>

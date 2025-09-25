@@ -4,6 +4,7 @@ type MovieType = {
   releaseYear: string;
   image: string;
 };
+import Image from "next/image";
 import { IoStar } from "react-icons/io5";
 export const SearchSectionResult = ({
   title,
@@ -15,10 +16,12 @@ export const SearchSectionResult = ({
     <div className="flex flex-col">
       <div className="w-[533px] h-[116px] flex items-center justify-center gap-4 ">
         <div className="bg-red-400 w-[67px] h-25">
-          <img
+          <Image
             src={`https://image.tmdb.org/t/p/w500${image}`}
             alt=""
             className="w-full h-full"
+            width={67}
+            height={100}
           />
         </div>
         <div className="w-[454px] h-[99px]">

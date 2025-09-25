@@ -3,11 +3,9 @@ import Image from "next/image";
 
 import {
   Card,
-  CardAction,
   CardContent,
   CardDescription,
   CardFooter,
-  CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import { MovieType } from "@/types";
@@ -50,21 +48,27 @@ export const MoviesContainer = ({
         </Link>
       </div>
       <div className="w-full h-full px-[80px] gap-8 flex flex-wrap">
-        {movieArray.slice(0, 16).map((movie) => (
+        {movieArray.slice(0, 10).map((movie) => (
           <Link href={`/details/${movie.id}`} key={movie.id}>
             <Card className="w-[229.73px] h-[429px] bg-secondary p-0 overflow-hidden gap-2">
               <CardContent className="p-0 h-[340px] overflow-hidden">
                 <Image
                   src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
                   alt={movie.title}
-                  width={230}
+                  width={229}
                   height={340}
                 />
               </CardContent>
 
               <CardFooter className="flex flex-col items-start p-2 h-[95px]">
                 <CardDescription className="flex gap-2">
-                  <img src="star.svg" alt="star" className="w-4 h-4 pt-[2px]" />
+                  <Image
+                    src="star.svg"
+                    alt="star"
+                    className="w-4 h-4 pt-[2px]"
+                    width={16}
+                    height={16}
+                  />
                   <span>{movie.vote_average}</span>
                 </CardDescription>
                 <CardTitle>{movie.title}</CardTitle>

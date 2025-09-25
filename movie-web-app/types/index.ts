@@ -97,6 +97,7 @@ export type SimilarMovieType = {
 
 type trailerType = {
   key: string;
+  type: string;
 };
 
 export type MovieTrailerType = {

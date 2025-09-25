@@ -23,7 +23,7 @@ const MoreLikeThisPage = async ({
     <div>
       {/* Movie Card Section */}
       <div className="max-w-[1080px] min-h-[372px] gap-8 flex flex-wrap">
-        {similarMovies.results.map((movie, index) => (
+        {similarMovies.results.map((movie) => (
           <MovieCard
             key={movie.id}
             title={movie.title}

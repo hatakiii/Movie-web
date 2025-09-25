@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export const MovieFooter = () => {
   return (
     <footer
@@ -11,7 +13,7 @@ export const MovieFooter = () => {
               data-property-1="Dark Mode"
               className="inline-flex justify-start items-center gap-2"
             >
-              <img src="./film-white.svg" alt="" />
+              <Image src="./film-white.svg" alt="" width={20} height={20} />
               <div className="justify-center text-neutral-50 text-base font-bold  leading-tight tracking-tight">
                 Movie Z
               </div>
@@ -28,7 +30,7 @@ export const MovieFooter = () => {
             </div>
             <div className="flex flex-col justify-start items-start gap-6">
               <div className="inline-flex justify-start items-center gap-3">
-                <img src="./email.svg" alt="" />
+                <Image src="./email.svg" alt="" width={16} height={16} />
                 <div className="inline-flex flex-col justify-start items-start">
                   <div className="justify-start text-neutral-50 text-sm font-medium  leading-tight">
                     Email:
@@ -39,7 +41,7 @@ export const MovieFooter = () => {
                 </div>
               </div>
               <div className="inline-flex justify-start items-center gap-3">
-                <img src="./phone.svg" alt="" />
+                <Image src="./phone.svg" alt="" width={16} height={16} />
                 <div className="inline-flex flex-col justify-start items-start">
                   <div className="justify-start text-neutral-50 text-sm font-medium  leading-tight">
                     Phone:

@@ -1,28 +1,26 @@
-import { MovieCard } from "@/components/myComponents/MovieCard";
 import { movieResponseType } from "@/types";
 import { getMoviesList } from "@/utils/get-data";
 import Link from "next/link";
 import {
   Card,
-  CardAction,
   CardContent,
   CardDescription,
   CardFooter,
-  CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import Image from "next/image";
+import { MoviePaginationMorePage } from "@/components/myComponents/MoviePaginationMorePage";
 
 type MorePageProps = {
-  searchParams: Promise<{ title: string; page: string | number }>;
+  searchParams: Promise<{ title: string; page: number }>;
 };
 
 const MorePage = async ({ searchParams }: MorePageProps) => {
   const params = await searchParams;
   const title = params.title;
-  const page = params.page;
+  const page = params.page || "1";
 
-  const movieRes: movieResponseType = await getMoviesList(title, "1");
+  const movieRes: movieResponseType = await getMoviesList(title, page);
   console.log("movieRes", movieRes);
   return (
     <div className="w-full h-full px-[80px] gap-8 flex flex-wrap">
@@ -40,7 +38,7 @@ const MorePage = async ({ searchParams }: MorePageProps) => {
 
             <CardFooter className="flex flex-col items-start p-2 h-[95px]">
               <CardDescription className="flex gap-2">
-                <img src="star.svg" alt="star" className="w-4 h-4 pt-[2px]" />
+                <Image src="star.svg" alt="star" width={16} height={16} />
                 <span>{movie.vote_average}</span>
               </CardDescription>
               <CardTitle>{movie.title}</CardTitle>
@@ -48,6 +46,12 @@ const MorePage = async ({ searchParams }: MorePageProps) => {
           </Card>
         </Link>
       ))}
+      <MoviePaginationMorePage
+        title={title}
+        totalResults={movieRes.total_results}
+        pageIndex={movieRes.page}
+        perPage={20}
+      />
     </div>
   );
 };

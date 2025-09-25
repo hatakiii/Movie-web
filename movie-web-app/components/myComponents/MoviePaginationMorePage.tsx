@@ -10,18 +10,16 @@ import {
 
 type MoviePaginationTypes = {
   totalResults: number;
-  whichPage: string;
-  whichId: number | string;
-  whichName: string;
+  title: string;
+
   pageIndex: number;
   perPage?: number;
 };
 
-export function MoviePagination({
+export function MoviePaginationMorePage({
   totalResults,
-  whichPage,
-  whichId,
-  whichName,
+  title,
+
   pageIndex,
   perPage = 20,
 }: MoviePaginationTypes) {
@@ -58,8 +56,7 @@ export function MoviePagination({
 
   const pageNumbers = getPageNumbers();
 
-  const makeHref = (page: number) =>
-    `/${whichPage}?id=${whichId}&name=${whichName}&page=${page}`;
+  const makeHref = (page: number) => `/more?title=${title}&page=${page}`;
 
   return (
     <Pagination>

@@ -7,7 +7,7 @@ import { getMovieGenres } from "@/utils/get-data";
 import { getSearchedMovies } from "@/utils/get-data";
 import { SearcedMoviesType } from "@/types";
 import { MovieCard } from "@/components/myComponents/MovieCard";
-import { MoviePagination } from "@/components/myComponents/MoviePagination";
+
 import { MoviePaginationSearch } from "@/components/myComponents/MoviePaginationSearch";
 
 type SearchPageProps = {
@@ -22,9 +22,8 @@ type SearchPageProps = {
 const page = async ({ searchParams }: SearchPageProps) => {
   const params = await searchParams;
   const value = params.value;
-  const id = params.id;
+
   const page = params.page || "1";
-  const name = params.name;
 
   const genresResponse = await getMovieGenres();
 
@@ -42,7 +41,7 @@ const page = async ({ searchParams }: SearchPageProps) => {
         {/* Movie cards section */}
         <div className="w-[804px] h-full flex flex-col sm:grid-cols-3 gap-6">
           <p className="col-span-full text-lg font-medium mb-2">
-            {searchedMovies.total_results} results for "{value}"
+            {searchedMovies.total_results} results for {value}
           </p>
           <div className="flex flex-wrap gap-8">
             {searchedMovies.results.map((movie) => (

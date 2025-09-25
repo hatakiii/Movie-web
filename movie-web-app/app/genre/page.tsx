@@ -66,10 +66,10 @@ const Genre = async ({ searchParams }: GenrePageProps) => {
           <Separator orientation="vertical" className="h-20" />
         </div>
 
-        {/* 5 results for "" */}
+        {/* 5 results for  */}
         <div className="w-[816px] h-full flex flex-col sm:grid-cols-3 gap-6">
           <p className="col-span-full text-lg font-medium mb-2">
-            {filteredMoviesResponse.total_results} titles in "{name}"
+            {filteredMoviesResponse.total_results} titles in {name}
           </p>
           <div className="flex flex-wrap gap-4">
             {filteredMoviesResponse.results.map((movie) => (

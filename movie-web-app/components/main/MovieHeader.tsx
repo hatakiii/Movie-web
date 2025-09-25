@@ -1,35 +1,29 @@
 import React from "react";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuIndicator,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  NavigationMenuViewport,
-} from "@/components/ui/navigation-menu";
+
 import { Search } from "lucide-react";
 
 import { ModeToggle } from "@/components/myComponents/ThemeToggler";
-import { Input } from "../ui/input";
 
 import { GenreDropdown } from "@/components/main";
 import { SearchSection } from "./SearchSection";
 import Link from "next/link";
+import { TbMovie } from "react-icons/tb";
 
 export const MovieHeader = () => {
   return (
     <header className="w-[100vw]  h-[59px]  flex justify-center items-center">
       <div className="w-[100%] max-w-[1280px] h-[36px] flex place-content-between items-center mx-20">
         <Link href={`/`} className="flex gap-2 w-[92px] h-[20px]">
-          <div className="flex gap-2 w-[92px] h-[20px]">
-            <img src="film.svg" alt="film logo" />
-            <span>MovieZ</span>
+          <div className="flex gap-2 w-[92px] h-[20px] items-center justify-center">
+            <TbMovie className="w-6 h-6 text-indigo-700" />
+
+            <p className="text-indigo-700 text-base font-bold leading-tight tracking-tight whitespace-nowrap">
+              Movie Z
+            </p>
           </div>
         </Link>
 
-        <div className="flex gap-5">
+        <div className="flex gap-5 mt-6">
           <GenreDropdown />
 
           <div className="flex items-center">

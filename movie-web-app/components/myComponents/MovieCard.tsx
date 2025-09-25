@@ -33,9 +33,9 @@ export const MovieCard = ({
           <Image
             src={`https://image.tmdb.org/t/p/w500/${image}`}
             alt=""
-            width={230}
+            width={229}
             height={340}
-            className="object-center"
+            className="object-contain"
           />
         </CardContent>
         <CardFooter className="flex flex-col items-start p-2 h-[95px]">

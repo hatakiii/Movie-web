@@ -18,7 +18,7 @@ import { GoStarFill } from "react-icons/go";
 import { TrailerDialog } from "@/components/trailer/TrailerDialog";
 import { MdOutlinePlayCircleFilled } from "react-icons/md";
 import Link from "next/link";
-import page from "@/app/searchPage/page";
+import Image from "next/image";
 
 type DetailDynamicPageProps = {
   params: Promise<{ id: string }>;
@@ -44,7 +44,7 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
 
   // console.log("TRAILER", movieTrailer);
 
-  const trailer = movieTrailer.results.filter((trail: any) =>
+  const trailer = movieTrailer.results.filter((trail) =>
     trail.type.includes("Trailer")
   );
 
@@ -95,16 +95,18 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
         {/* Movie posters */}
         <div className="w-full h-[428px] flex justify-between mt-6">
           <div className="w-[290px] h-[428px] ">
-            <img
+            <Image
               src={`https://image.tmdb.org/t/p/original${movieDetail.poster_path}`}
-              alt=""
+              alt={movieDetail.poster_path}
               width={290}
               height={428}
             />
           </div>
           <div className="w-[760px] h-[428px] relative">
-            <img
-              className="w-[760px] h-[428px]"
+            <Image
+              width={760}
+              height={428}
+              alt={movieDetail.backdrop_path}
               src={`https://image.tmdb.org/t/p/original${movieDetail.backdrop_path}`}
             />
             {/* There was Dialog */}
@@ -216,7 +218,7 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
         </div>
         {/* Movie Card Section */}
         <div className="max-w-[1080px] min-h-[372px] gap-8 flex">
-          {similarMovies.results.slice(0, 5).map((movie, index) => (
+          {similarMovies.results.slice(0, 5).map((movie) => (
             <MovieCard
               key={movie.id}
               title={movie.title}

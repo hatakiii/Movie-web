@@ -23,13 +23,8 @@ export function MoviePaginationMoreLikeThis({
   pageIndex,
   perPage = 20,
 }: MoviePaginationTypes) {
-  // API restriction: max 500 pages
   const apiMaxPages = 500;
 
-  // Calculate real pages from totalResults
-  const calculatedPages = Math.ceil(totalResults / perPage);
-
-  // Take the smaller of real pages vs API max
   const safeTotalPages = Math.min(
     isNaN(Math.ceil(totalResults / perPage))
       ? 0

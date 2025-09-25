@@ -12,8 +12,6 @@ import {
 } from "@/components/ui/popover";
 import Link from "next/link";
 import { SearchSectionResult } from "./SearchSectionResult";
-import { Search } from "lucide-react";
-import page from "@/app/searchPage/page";
 
 export const SearchSection = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -71,7 +69,7 @@ export const SearchSection = () => {
               href={`/searchPage?value=${searchValue}`}
               onClick={() => setIsOpen(false)}
             >
-              See all results for "{searchValue}"
+              See all results for {searchValue}
             </Link>
           </PopoverContent>
         </Popover>
