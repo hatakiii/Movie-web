@@ -18,8 +18,10 @@ export async function GenreDropdown() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="outline" className="md:block hidden">
-          <ChevronDown />
-          Genre
+          <div className="flex items-center justify-center gap-2">
+            <ChevronDown />
+            Genre
+          </div>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-[537px] p-[20px]" align="start">
