@@ -17,7 +17,7 @@ export async function GenreDropdown() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline">
+        <Button variant="outline" className="md:block hidden">
           <ChevronDown />
           Genre
         </Button>
