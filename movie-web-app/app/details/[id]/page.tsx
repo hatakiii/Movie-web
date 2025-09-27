@@ -75,18 +75,18 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
             </p>
             <div className="w-[83px] h-[48px] flex gap-1">
               <div className="w-7 h-12 flex items-center justify-center">
-                <GoStarFill className="w-[28px] h-[28px]" />
+                <GoStarFill className="w-[28px] h-[28px] text-amber-300" />
               </div>
 
               <div>
                 <p className="text-text-text-muted-foreground text-base font-normal ">
                   <span className="text-text-text-foreground text-lg font-semibold leading-7 ">
-                    {movieDetail.vote_average}
+                    {movieDetail.vote_average.toFixed(1)}
                   </span>
                   /10
                 </p>
                 <h1 className="text-text-text-muted-foreground text-xs font-normal text/text-muted-foreground">
-                  {movieDetail.vote_count}
+                  {(movieDetail.vote_count / 1000).toFixed(0)}k
                 </h1>
               </div>
             </div>
@@ -225,7 +225,7 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
               score={movie.vote_average}
               image={movie.poster_path}
               id={movie.id}
-              classStyle="w-[190px]"
+              classStyle="w-[190px] h-[372px]"
             />
           ))}
         </div>

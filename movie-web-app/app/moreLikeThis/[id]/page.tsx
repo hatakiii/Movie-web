@@ -20,9 +20,9 @@ const MoreLikeThisPage = async ({
   const similarMovies: SimilarMovieType = await getSimilarMovies(id, page);
   console.log("Similar movies More like this", similarMovies);
   return (
-    <div>
+    <div className="flex flex-col justify-center items-center">
       {/* Movie Card Section */}
-      <div className="max-w-[1080px] min-h-[372px] gap-8 flex flex-wrap">
+      <div className="max-w-[1280px] min-h-[372px] gap-8 flex flex-wrap ">
         {similarMovies.results.map((movie) => (
           <MovieCard
             key={movie.id}

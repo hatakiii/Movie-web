@@ -57,8 +57,8 @@ export const SearchSection = () => {
                 >
                   <SearchSectionResult
                     title={movie.title}
-                    score={movie.vote_average}
-                    releaseYear={movie.release_date}
+                    score={movie.vote_average.toFixed(1)}
+                    releaseYear={movie.release_date.split("-")[0]}
                     image={movie.poster_path}
                   />
                 </Link>

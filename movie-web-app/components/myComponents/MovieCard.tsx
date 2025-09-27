@@ -29,13 +29,13 @@ export const MovieCard = ({
       <Card
         className={`w-[229.73px] h-[429px] bg-secondary p-0 overflow-hidden gap-2 ${classStyle}`}
       >
-        <CardContent className="p-0 h-[340px] w-full overflow-hidden flex justify-center items-center">
+        <CardContent className="p-0 h-full w-full overflow-hidden flex justify-center items-center">
           <Image
             src={`https://image.tmdb.org/t/p/w500/${image}`}
             alt=""
             width={229}
             height={340}
-            className="object-contain"
+            className="object-cover"
           />
         </CardContent>
         <CardFooter className="flex flex-col items-start p-2 h-[95px]">
