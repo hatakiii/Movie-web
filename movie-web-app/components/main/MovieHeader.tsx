@@ -14,7 +14,7 @@ export const MovieHeader = () => {
     <header className="w-[100vw]  h-[59px]  flex justify-center items-center">
       <div className="w-[100%] max-w-[1280px] h-[36px] flex place-content-between items-center mx-20">
         <Link href={`/`} className="flex gap-2 w-[92px] h-[20px]">
-          <div className="flex gap-2 w-[92px] h-[20px] items-center justify-center">
+          <div className="hidden sm:flex gap-2 w-[92px] h-[20px] items-center justify-center">
             <TbMovie className="w-6 h-6 text-indigo-700" />
 
             <p className="text-indigo-700 text-base font-bold leading-tight tracking-tight whitespace-nowrap">

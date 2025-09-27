@@ -17,10 +17,10 @@ export async function GenreDropdown() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" className="md:block hidden">
+        <Button variant="outline">
           <div className="flex items-center justify-center gap-2">
             <ChevronDown />
-            Genre
+            <span className="sm:block hidden">Genre</span>
           </div>
         </Button>
       </DropdownMenuTrigger>
