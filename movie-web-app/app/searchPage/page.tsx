@@ -37,9 +37,9 @@ const page = async ({ searchParams }: SearchPageProps) => {
       <h1 className="max-w-[1280px] h-9 text-text-text-foreground text-3xl font-semibold">
         Search Results
       </h1>
-      <div className="max-w-[1280px] min-h-[826px]  flex">
+      <div className="max-w-[1280px] min-h-[826px]  md:flex-row flex-col">
         {/* Movie cards section */}
-        <div className="w-[804px] h-full flex flex-col sm:grid-cols-3 gap-6">
+        <div className="max-w-[804px] h-full flex flex-col sm:grid-cols-3 gap-6">
           <p className="col-span-full text-lg font-medium mb-2">
             {searchedMovies.total_results} results for {value}
           </p>
@@ -51,7 +51,7 @@ const page = async ({ searchParams }: SearchPageProps) => {
                 score={movie.vote_average}
                 image={movie.poster_path}
                 id={movie.id}
-                classStyle=""
+                classStyle="w-[157.5px] sm:w-[165px] h-[309.1px] sm:h-[331px] gap-5"
               />
             ))}
           </div>
@@ -65,12 +65,12 @@ const page = async ({ searchParams }: SearchPageProps) => {
           />
         </div>
         {/* Column separator */}
-        <div className="flex items-center space-x-4">
+        <div className="hidden md:flex items-center space-x-4">
           <Separator orientation="vertical" className="h-20" />
         </div>
         {/* Search by genre */}
-        <div className="min-w-[387px] min-h-[352px]">
-          <div className="min-w-[213px] min-h-[60px]">
+        <div className="max-w-[387px] min-h-[352px] ml-7">
+          <div className="max-w-[213px] min-h-[60px] mb-5">
             <h1 className="text-text-text-foreground text-2xl font-semibold leading-loose">
               Search by genre
             </h1>
@@ -79,7 +79,7 @@ const page = async ({ searchParams }: SearchPageProps) => {
             </p>
           </div>
 
-          <div className="w-[387px]  flex flex-wrap gap-4 hover:!bg-transparent p-0">
+          <div className="max-w-[387px]  flex flex-wrap gap-4 hover:!bg-transparent p-0">
             {genresResponse.genres.map(
               (genre: { id: number; name: string }) => (
                 <Link
