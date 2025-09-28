@@ -93,7 +93,7 @@ const MovieCarouselItem = ({
     const trailer = movieTrailer.results.filter((trail) =>
       trail.type.includes("Trailer")
     );
-    console.log("Mytrailer", trailer);
+    // console.log("Mytrailer", trailer);
     setTrailerKey(trailer[0]?.key || "");
   };
 
@@ -123,7 +123,7 @@ const MovieCarouselItem = ({
         <div className="w-full min-h-[40px] justify-start text-white text-4xl font-bold leading-10">
           {movie.title}
         </div>
-        <div className="w-full min-h-[48px] text-sm opacity-80 flex justify-start items-center">
+        <div className="w-full min-h-[48px] text-sm opacity-80 flex justify-start items-center gap-2">
           <Image
             src="star.svg"
             alt="star"
@@ -131,7 +131,7 @@ const MovieCarouselItem = ({
             width={28}
             height={28}
           />
-          {movie.vote_average}
+          {movie.vote_average.toFixed(1)}
         </div>
         <p className="w-[302px] min-h-20 py-4 justify-start items-start text-neutral-50 text-xs font-normal leading-none">
           {movie.overview}

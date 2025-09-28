@@ -62,7 +62,7 @@ export function MoviePagination({
     `/${whichPage}?id=${whichId}&name=${whichName}&page=${page}`;
 
   return (
-    <Pagination>
+    <Pagination className="flex justify-self-center">
       <PaginationContent>
         {/* Previous Button */}
         <PaginationItem>

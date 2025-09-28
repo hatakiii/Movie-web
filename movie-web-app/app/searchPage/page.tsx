@@ -31,7 +31,7 @@ const page = async ({ searchParams }: SearchPageProps) => {
     value,
     page
   );
-  console.log("Oldson kinonuud", searchedMovies);
+  // console.log("Oldson kinonuud", searchedMovies);
   return (
     <div className="max-w-[1280px] min-h-[894px] flex flex-col gap-8 ">
       <h1 className="max-w-[1280px] h-9 text-text-text-foreground text-3xl font-semibold">

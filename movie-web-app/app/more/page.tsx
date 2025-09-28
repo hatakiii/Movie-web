@@ -21,7 +21,7 @@ const MorePage = async ({ searchParams }: MorePageProps) => {
   const page = params.page || "1";
 
   const movieRes: movieResponseType = await getMoviesList(title, page);
-  console.log("movieRes", movieRes);
+  // console.log("movieRes", movieRes);
   return (
     <div className="w-full h-full px-[80px] gap-8 flex flex-wrap">
       {movieRes.results.map((movie) => (

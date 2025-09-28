@@ -23,17 +23,17 @@ const Genre = async ({ searchParams }: GenrePageProps) => {
     id,
     page
   );
-  console.log("FILTERDSEN KINONUUD", filteredMoviesResponse);
+  // console.log("FILTERDSEN KINONUUD", filteredMoviesResponse);
   return (
-    <div className="w-[1280px] px-20 flex flex-col">
+    <div className="max-w-[1280px] mx-5 sm:mx-20 flex flex-col">
       <div className="w-full h-[36px] text-text-text-foreground text-3xl font-semibold">
         Search filter
       </div>
       {/* genres and it's movies */}
-      <div className="max-w-[1280px] min-h-[826px]  flex">
+      <div className="max-w-[1280px] min-h-[826px]  flex flex-col md:flex-row">
         {/* Search by genre */}
-        <div className="min-w-[387px] min-h-[352px]">
-          <div className="min-w-[213px] min-h-[60px]">
+        <div className="max-w-[387px] max-h-[352px]">
+          <div className="max-w-[213px] max-h-[60px] mb-5">
             <h1 className="text-text-text-foreground text-2xl font-semibold leading-loose">
               Genres
             </h1>
@@ -42,7 +42,7 @@ const Genre = async ({ searchParams }: GenrePageProps) => {
             </p>
           </div>
 
-          <div className="w-[387px]  flex flex-wrap gap-4 hover:!bg-transparent p-0">
+          <div className="max-w-[387px]  flex flex-wrap gap-4 hover:!bg-transparent p-0 mb-8">
             {genresResponse.genres.map(
               (genre: { id: number; name: string }) => (
                 <Link
@@ -62,16 +62,16 @@ const Genre = async ({ searchParams }: GenrePageProps) => {
           </div>
         </div>
         {/* Column separator */}
-        <div className="flex items-center space-x-4">
+        <div className="hidden sm:flex items-center px-4">
           <Separator orientation="vertical" className="h-20" />
         </div>
 
-        {/* 5 results for  */}
-        <div className="w-[816px] h-full flex flex-col sm:grid-cols-3 gap-6">
-          <p className="col-span-full text-lg font-medium mb-2">
+        {/*  results for  */}
+        <div className="max-w-[806px] h-full flex flex-col">
+          <p className="col-span-full text-lg font-medium mb-8">
             {filteredMoviesResponse.total_results} titles in {name}
           </p>
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-5 sm:gap-x-12 sm:gap-y-8 mb-8">
             {filteredMoviesResponse.results.map((movie) => (
               <MovieCard
                 key={movie.id}
@@ -79,7 +79,7 @@ const Genre = async ({ searchParams }: GenrePageProps) => {
                 score={movie.vote_average}
                 image={movie.poster_path}
                 id={movie.id}
-                classStyle="w-[165px] h-[331px]"
+                classStyle="w-[157.5px] md:w-[165px] h-[309.9px] md:h-[331px]"
               />
             ))}
           </div>
