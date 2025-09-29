@@ -23,7 +23,7 @@ const MorePage = async ({ searchParams }: MorePageProps) => {
   const movieRes: movieResponseType = await getMoviesList(title, page);
   // console.log("movieRes", movieRes);
   return (
-    <div className="w-full h-full px-[80px] gap-8 flex flex-wrap">
+    <div className="max-w-[1440px] h-full px-[80px] gap-8 flex flex-wrap">
       {movieRes.results.map((movie) => (
         <Link href={`/details/${movie.id}`} key={movie.id}>
           <Card className="w-[229.73px] h-[429px] bg-secondary p-0 overflow-hidden gap-2">

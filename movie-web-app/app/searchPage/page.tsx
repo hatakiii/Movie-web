@@ -37,7 +37,7 @@ const page = async ({ searchParams }: SearchPageProps) => {
       <h1 className="max-w-[1280px] h-9 text-text-text-foreground text-3xl font-semibold">
         Search Results
       </h1>
-      <div className="max-w-[1280px] min-h-[826px]  md:flex-row flex-col">
+      <div className="max-w-[1280px] min-h-[826px] md:flex ">
         {/* Movie cards section */}
         <div className="max-w-[804px] h-full flex flex-col sm:grid-cols-3 gap-6">
           <p className="col-span-full text-lg font-medium mb-2">
@@ -65,7 +65,7 @@ const page = async ({ searchParams }: SearchPageProps) => {
           />
         </div>
         {/* Column separator */}
-        <div className="hidden md:flex items-center space-x-4">
+        <div className="hidden sm:flex items-center space-x-4">
           <Separator orientation="vertical" className="h-20" />
         </div>
         {/* Search by genre */}
