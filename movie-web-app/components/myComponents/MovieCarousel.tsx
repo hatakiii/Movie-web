@@ -102,60 +102,90 @@ const MovieCarouselItem = ({
   });
 
   return (
-    <CarouselItem className="basis-full flex-shrink-0 relative">
-      <Link
-        className="w-full h-[600px] object-cover"
-        href={`/details/${movie.id}`}
-      >
-        <Image
+    <>
+      <CarouselItem className="basis-full flex-shrink-0 relative">
+        <Link
           className="w-full h-[600px] object-cover"
-          src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
-          alt={movie.title}
-          width={1440}
-          height={600}
-        />
-      </Link>
-      {/* Movie Description Overlay */}
-      <div className="absolute bottom-[158px] left-[140px] text-white w-[404px] h-[264px] rounded-2xl ">
-        <div className="w-full h-[24px] text-white text-base font-normal leading-normal">
-          Now Playing:
-        </div>
-        <div className="w-full min-h-[40px] justify-start text-white text-4xl font-bold leading-10">
-          {movie.title}
-        </div>
-        <div className="w-full min-h-[48px] text-sm opacity-80 flex justify-start items-center gap-2">
-          <Image
-            src="star.svg"
-            alt="star"
-            className="pt-2 pb-3"
-            width={28}
-            height={28}
-          />
-          {movie.vote_average.toFixed(1)}
-        </div>
-        <p className="w-[302px] min-h-20 py-4 justify-start items-start text-neutral-50 text-xs font-normal leading-none">
-          {movie.overview}
-        </p>
-
-        <TrailerDialog
-          YTkey={trailerKey}
-          onOpenChange={(open) => {
-            if (open) autoplay.current?.stop();
-            else autoplay.current?.play();
-          }}
+          href={`/details/${movie.id}`}
         >
-          <div className="w-[145px] h-[40px] bg-white text-black rounded-2xl flex gap-2 items-center justify-center cursor-pointer">
-            <Image
-              src="play.svg"
-              alt="play"
-              className="w-4 h-4"
-              width={16}
-              height={16}
-            />
-            <span className="text-sm font-medium">Watch Trailer</span>
-          </div>
-        </TrailerDialog>
-      </div>
-    </CarouselItem>
+          <Image
+            className="w-full h-[600px] object-cover"
+            src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
+            alt={movie.title}
+            width={1440}
+            height={600}
+          />
+        </Link>
+        {/* Movie Description Overlay */}
+        {/* Desktop overlay (hidden on mobile) */}
+        <div className="hidden md:block absolute bottom-[158px] left-[140px] text-white w-[404px] h-[264px] rounded-2xl">
+          <MovieDescription
+            movie={movie}
+            trailerKey={trailerKey}
+            autoplay={autoplay}
+          />
+        </div>
+
+        {/* Mobile description (shown below the image) */}
+        <div className="block md:hidden absolute p-4 bg-black text-white">
+          <MovieDescription
+            movie={movie}
+            trailerKey={trailerKey}
+            autoplay={autoplay}
+          />
+        </div>
+      </CarouselItem>
+    </>
   );
 };
+
+const MovieDescription = ({
+  movie,
+  trailerKey,
+  autoplay,
+}: {
+  movie: MovieType;
+  trailerKey: string;
+  autoplay: React.RefObject<ReturnType<typeof Autoplay>>;
+}) => (
+  <>
+    <div className="w-full h-[24px] text-base font-normal leading-normal">
+      Now Playing:
+    </div>
+    <div className="w-full min-h-[40px] text-2xl md:text-4xl font-bold leading-tight">
+      {movie.title}
+    </div>
+    <div className="w-full min-h-[48px] text-sm opacity-80 flex items-center gap-2">
+      <Image
+        src="star.svg"
+        alt="star"
+        className="pt-2 pb-3"
+        width={28}
+        height={28}
+      />
+      {movie.vote_average.toFixed(1)}
+    </div>
+    <p className="w-full py-4 text-xs md:text-sm font-normal leading-snug">
+      {movie.overview}
+    </p>
+
+    <TrailerDialog
+      YTkey={trailerKey}
+      onOpenChange={(open) => {
+        if (open) autoplay.current?.stop();
+        else autoplay.current?.play();
+      }}
+    >
+      <div className="w-[145px] h-[40px] bg-white text-black rounded-2xl flex gap-2 items-center justify-center cursor-pointer">
+        <Image
+          src="play.svg"
+          alt="play"
+          className="w-4 h-4"
+          width={16}
+          height={16}
+        />
+        <span className="text-sm font-medium">Watch Trailer</span>
+      </div>
+    </TrailerDialog>
+  </>
+);

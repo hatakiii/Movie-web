@@ -14,10 +14,10 @@ export const MovieHeader = () => {
     <header className="w-[100vw]  h-[59px]  flex justify-center items-center">
       <div className="w-[100%] max-w-[1280px] h-[36px] flex place-content-between items-center mx-20">
         <Link href={`/`} className="flex gap-2 w-[92px] h-[20px]">
-          <div className="hidden sm:flex gap-2 w-[92px] h-[20px] items-center justify-center">
+          <div className="flex gap-2 w-[92px] h-[20px] items-center justify-center">
             <TbMovie className="w-6 h-6 text-indigo-700" />
 
-            <p className="text-indigo-700 text-base font-bold leading-tight tracking-tight whitespace-nowrap">
+            <p className="hidden sm:block text-indigo-700 text-base font-bold leading-tight tracking-tight whitespace-nowrap">
               Movie Z
             </p>
           </div>
@@ -26,8 +26,8 @@ export const MovieHeader = () => {
         <div className="flex gap-5 mt-6">
           <GenreDropdown />
 
-          <div className="flex items-center">
-            <Search className="-mr-8 -mt-6" />
+          <div className="flex items-center mr-3">
+            <Search className="-mr-8 -mt-6 shrink-0" />
             <SearchSection />
           </div>
           {/* <Input className="pl-10" placeholder="Search.." /> */}
