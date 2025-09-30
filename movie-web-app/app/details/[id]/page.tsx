@@ -59,8 +59,8 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
 
   return (
     <div>
-      <div className="max-w-[1080px] min-h-[524px] flex flex-col mt-[52px]">
-        <div className="min-w-[100%] min-h-[72px] flex justify-between">
+      <div className="md:max-w-[1080px] w-[100vw]  min-h-[524px] flex flex-col mt-[52px]">
+        <div className="w-[100%] min-h-[72px] flex justify-between">
           <div className="min-w-[211px] min-h-[72px]">
             <p className="text-text-text-foreground text-4xl font-bold leading-10">
               {movieDetail.title}
@@ -129,7 +129,7 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
         </div>
       </div>
       {/* Description section */}
-      <div className="max-w-[1080px] min-h-[271px] mt-8">
+      <div className="md:max-w-[1080px] w-[100vw]  min-h-[271px] mt-8">
         <div className="w-full h-5 flex gap-3">
           {movieDetail.genres.map((genre) => {
             return <Badge key={genre.id}>{genre.name}</Badge>;
@@ -190,7 +190,7 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
         </div>
       </div>
       {/* More Like This */}
-      <div className="max-w-[1080px] min-h-[440px] mt-8">
+      <div className="md:max-w-[1080px] w-[100vw]  min-h-[440px] mt-8">
         <div className="w-full h-[36px] flex place-content-between items-center mb-[32px]">
           <span className="w-full h-[32px] justify-start text-text-text-foreground text-2xl font-semibold leading-loose flex items-center">
             More like this
@@ -217,7 +217,7 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
           </Link>
         </div>
         {/* Movie Card Section */}
-        <div className="max-w-[1080px] min-h-[372px] gap-8 flex">
+        <div className="max-w-[1080px] min-h-[372px] gap-8 flex flex-wrap">
           {similarMovies.results.slice(0, 5).map((movie) => (
             <MovieCard
               key={movie.id}
