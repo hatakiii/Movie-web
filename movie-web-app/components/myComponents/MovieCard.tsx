@@ -27,7 +27,7 @@ export const MovieCard = ({
   return (
     <Link href={`/details/${id}`}>
       <Card
-        className={`w-[229.73px] h-[429px] bg-secondary p-0 overflow-hidden gap-2 ${classStyle}`}
+        className={`lg:w-[229.73px] lg:h-[429px] bg-secondary p-0 overflow-hidden gap-2 ${classStyle}`}
       >
         <CardContent className="p-0 h-full w-full overflow-hidden flex justify-center items-center">
           <Image

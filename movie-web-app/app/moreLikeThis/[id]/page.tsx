@@ -18,11 +18,11 @@ const MoreLikeThisPage = async ({
   const id = dynamicParams.id;
   const page = searchQuery.page || "1";
   const similarMovies: SimilarMovieType = await getSimilarMovies(id, page);
-  console.log("Similar movies More like this", similarMovies);
+  // console.log("Similar movies More like this", similarMovies);
   return (
     <div className="flex flex-col justify-center items-center px-5">
       {/* Movie Card Section */}
-      <div className="max-w-[1280px] min-h-[372px] gap-8 flex flex-wrap mb-8 justify-center items-center">
+      <div className="max-w-[1280px] min-h-[372px] sm:gap-8 gap-5 flex flex-wrap mb-8 justify-center items-center">
         {similarMovies.results.map((movie) => (
           <MovieCard
             key={movie.id}

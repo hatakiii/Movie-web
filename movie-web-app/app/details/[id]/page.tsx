@@ -60,7 +60,7 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
   return (
     <div>
       <div className="md:max-w-[1080px] w-[100vw]  min-h-[524px] flex flex-col mt-[52px]">
-        <div className="w-[100%] min-h-[72px] flex justify-between">
+        <div className="w-[100%] min-h-[72px] flex justify-between px-5">
           <div className="min-w-[211px] min-h-[72px]">
             <p className="text-text-text-foreground text-4xl font-bold leading-10">
               {movieDetail.title}
@@ -128,23 +128,40 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
         </div>
       </div>
       {/* Description section */}
-      <div className="md:max-w-[1080px] w-[100vw]  min-h-[271px] mt-8">
-        <div className="w-full h-5 flex gap-3">
-          {movieDetail.genres.map((genre) => {
-            return <Badge key={genre.id}>{genre.name}</Badge>;
-          })}
-        </div>
-        <p
-          className="w-full min-h-12 mt-5 text-text-text-foreground text-base font-normal
+      <div className="md:max-w-[1080px] w-[100vw]  min-h-[271px] mt-8 px-5">
+        <div className="flex gap-[34px]">
+          <div className="lg:hidden max-w-[100px] max-h-[148px] ">
+            <Image
+              src={`https://image.tmdb.org/t/p/original${movieDetail.poster_path}`}
+              alt={movieDetail.poster_path}
+              width={290}
+              height={428}
+            />
+          </div>
+          <div className="flex flex-col">
+            <div className="w-full flex gap-3">
+              {movieDetail.genres.map((genre) => {
+                return (
+                  <Badge className="h-5" key={genre.id}>
+                    {genre.name}
+                  </Badge>
+                );
+              })}
+            </div>
+            <div
+              className="w-full min-h-12 mt-5 text-text-text-foreground text-base font-normal
 "
-        >
-          {movieDetail.overview}
-        </p>
+            >
+              {movieDetail.overview}
+            </div>
+          </div>
+        </div>
+
         <div className="w-full h-[41px] mt-5 flex">
           <h1 className=" h-full mr-[53px] text-text-text-foreground text-base font-bold leading-7">
             Director
           </h1>
-          <p className="w-full h-full text-text-text-foreground text-base font-normal">
+          <p className="w-full h-full text-text-text-foreground text-base font-normal whitespace-nowrap truncate flex justify-start">
             {director ? (
               <span>{director.name}</span>
             ) : (
@@ -159,7 +176,7 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
           <h1 className="w-[64px] h-full mr-[53px] text-text-text-foreground text-base font-bold leading-7 ">
             Writers
           </h1>
-          <p className="w-full h-full text-text-text-foreground text-base font-normal">
+          <p className="w-full h-full text-text-text-foreground text-base font-normal whitespace-nowrap truncate flex justify-start">
             {writer ? (
               <span>
                 {writer.slice(0, 3).map((person, i) => (
@@ -178,10 +195,12 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
           <h1 className="w-[64px] h-full mr-[53px] text-text-text-foreground text-base font-bold leading-7 ">
             Stars
           </h1>
-          <p className="w-full h-full text-text-text-foreground text-base font-normal">
-            {movieCredits.cast.slice(0, 3).map((star, i) => (
-              <span key={i}>{star.name} · </span>
-            ))}
+          <p className="w-full h-full text-text-text-foreground text-base font-normal whitespace-nowrap truncate flex justify-start">
+            <span>
+              {movieCredits.cast.slice(0, 3).map((star, i) => (
+                <span key={i}>{`${star.name} · `} </span>
+              ))}{" "}
+            </span>
           </p>
         </div>
         <div className="w-full h-[9px] flex">
@@ -189,7 +208,7 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
         </div>
       </div>
       {/* More Like This */}
-      <div className="md:max-w-[1080px] w-[100vw]  min-h-[440px] mt-8">
+      <div className="md:max-w-[1080px] w-[100vw]  min-h-[440px] mt-8 px-5">
         <div className="w-full h-[36px] flex place-content-between items-center mb-[32px]">
           <span className="w-full h-[32px] justify-start text-text-text-foreground text-2xl font-semibold leading-loose flex items-center">
             More like this
@@ -216,7 +235,7 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
           </Link>
         </div>
         {/* Movie Card Section */}
-        <div className="max-w-[1080px] min-h-[372px] gap-8 flex flex-wrap">
+        <div className="max-w-[1080px] md:min-h-[372px] md:gap-8 gap-5 flex flex-wrap">
           {similarMovies.results.slice(0, 5).map((movie) => (
             <MovieCard
               key={movie.id}
@@ -224,7 +243,7 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
               score={movie.vote_average}
               image={movie.poster_path}
               id={movie.id}
-              classStyle="w-[190px] h-[372px]"
+              classStyle="md:w-[190px] w-[157.5px] md:h-[372px] h-[309.1px]"
             />
           ))}
         </div>
