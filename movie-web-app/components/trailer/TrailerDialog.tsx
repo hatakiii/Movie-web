@@ -18,11 +18,12 @@ export const TrailerDialog = ({
     <Dialog onOpenChange={onOpenChange}>
       <DialogTrigger asChild>{children}</DialogTrigger>
 
-      <DialogContent className="p-0 max-w-[1080px] sm:max-w-[1080px]">
-        <DialogTitle></DialogTitle>
+      <DialogContent className="p-0 max-w-[997px] sm:max-w-[997px] max-h-[561px] ">
+        <DialogTitle className="hidden"></DialogTitle>
+
         <iframe
-          width={1080}
-          height={600}
+          width={997}
+          height={561}
           src={`https://www.youtube.com/embed/${YTkey}`}
           title="Youtube video player"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

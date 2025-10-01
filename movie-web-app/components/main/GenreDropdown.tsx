@@ -1,4 +1,7 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
+import { useEffect, useState } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,11 +14,20 @@ import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { getMovieGenres } from "@/utils/get-data";
 
-export async function GenreDropdown() {
-  const genresResponse = await getMovieGenres();
+export function GenreDropdown() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [genres, setGenres] = useState<{ id: number; name: string }[]>([]);
+
+  useEffect(() => {
+    async function fetchGenres() {
+      const res = await getMovieGenres();
+      setGenres(res.genres);
+    }
+    fetchGenres();
+  }, []);
 
   return (
-    <DropdownMenu>
+    <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
       <DropdownMenuTrigger asChild>
         <Button variant="outline">
           <div className="flex items-center justify-center gap-2">
@@ -26,27 +38,18 @@ export async function GenreDropdown() {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-[537px] p-[20px]" align="start">
         <div className="w-[213px] h-[60px] flex flex-col items-start gap-1">
-          <h1 className="text-2xl font-bold w-[213px] h-[32px] flex items-center">
-            Genres
-          </h1>
-          <p className="w-[213px] h-[24px] flex items-center">
-            See list of movies by genre
-          </p>
+          <h1 className="text-2xl font-bold">Genres</h1>
+          <p>See list of movies by genre</p>
         </div>
-        <div className="w-[497px] h-[33px] flex align-middle items-center">
-          <DropdownMenuSeparator className="w-[100%]" />
-        </div>
-
-        <DropdownMenuItem className="w-[497px] flex flex-wrap gap-4 hover:!bg-transparent p-0">
-          {genresResponse.genres.map((genre: { id: number; name: string }) => (
+        <DropdownMenuSeparator className="w-full" />
+        <DropdownMenuItem className="w-full flex flex-wrap gap-4 hover:!bg-transparent p-0">
+          {genres.map((genre) => (
             <Link
               href={`/genre?id=${genre.id}&name=${genre.name}`}
               key={genre.id}
+              onClick={() => setIsOpen(false)}
             >
-              <Badge
-                variant="outline"
-                className="h-[20px] active:bg-[rgba(0,0,0,0.4)]"
-              >
+              <Badge variant="outline" className="h-[20px]">
                 {genre.name}
                 <ChevronRight />
               </Badge>
