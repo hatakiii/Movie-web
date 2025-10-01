@@ -94,7 +94,7 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
         </div>
         {/* Movie posters */}
         <div className="w-full h-[428px] flex justify-between mt-6">
-          <div className="w-[290px] h-[428px] ">
+          <div className="hidden lg:block max-w-[290px] max-h-[428px] ">
             <Image
               src={`https://image.tmdb.org/t/p/original${movieDetail.poster_path}`}
               alt={movieDetail.poster_path}
@@ -102,18 +102,18 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
               height={428}
             />
           </div>
-          <div className="w-[760px] h-[428px] relative">
+          <div className="relative w-full max-w-3xl aspect-video">
             <Image
-              width={760}
-              height={428}
-              alt={movieDetail.backdrop_path}
               src={`https://image.tmdb.org/t/p/original${movieDetail.backdrop_path}`}
+              alt={movieDetail.backdrop_path}
+              fill
+              className="object-cover"
             />
-            {/* There was Dialog */}
+
             <TrailerDialog YTkey={trailer[0]?.key}>
               {
                 <div
-                  className="w-[174px] h-[40px] absolute left-6 bottom-6 flex justify-between items-center"
+                  className="max-w-[174px] max-h-[40px] absolute left-6 bottom-6 flex justify-between items-center"
                   aria-controls="radix-_R_kpbn5ritqlb_"
                 >
                   <MdOutlinePlayCircleFilled className="w-10 h-10" />
@@ -124,7 +124,6 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
                 </div>
               }
             </TrailerDialog>
-            {/* End of Dialog */}
           </div>
         </div>
       </div>
