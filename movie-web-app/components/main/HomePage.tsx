@@ -22,6 +22,7 @@ export async function HomePage() {
     <div className="flex flex-col justify-center items-center">
       {/* <Link href="./genre">Genre luu shiljine</Link> */}
       <MovieCarousel movies={nowPlayingMovies.results} />
+
       <MoviesContainer
         movieArray={upcomingMovies.results}
         categories={"Upcoming"}

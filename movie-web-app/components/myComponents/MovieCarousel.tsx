@@ -39,11 +39,11 @@ export const MovieCarousel = ({ movies }: MovieCarouselProps) => {
   }, [api]);
 
   return (
-    <div className="w-full h-[600px] overflow-hidden">
+    <div className="w-[100vw] min-h-[600px]">
       <Carousel
         plugins={[autoplay.current]}
         setApi={setApi}
-        className="w-full h-full relative overflow-hidden"
+        className="w-full h-full sm:relative overflow-hidden"
       >
         <CarouselContent>
           {movies
@@ -57,10 +57,10 @@ export const MovieCarousel = ({ movies }: MovieCarouselProps) => {
               />
             ))}
         </CarouselContent>
-        <CarouselPrevious className="left-11" />
-        <CarouselNext className="right-11" />
+        <CarouselPrevious className="hidden sm:left-11" />
+        <CarouselNext className="hidden sm:right-11" />
         {/* Dots indicator */}
-        <div className="absolute bottom-[37px] left-[calc(45.5%)] flex gap-2">
+        <div className="sm:absolute bottom-[37px] left-[calc(45.5%)] flex gap-2">
           {Array.from({ length: count }).map((_, index) => (
             <button
               key={index}
@@ -72,6 +72,8 @@ export const MovieCarousel = ({ movies }: MovieCarouselProps) => {
           ))}
         </div>
       </Carousel>
+      {/* Tab only shows on mobile view */}
+      {/* <TabDescription /> */}
     </div>
   );
 };
@@ -103,13 +105,13 @@ const MovieCarouselItem = ({
 
   return (
     <>
-      <CarouselItem className="basis-full flex-shrink-0 relative">
+      <CarouselItem className="basis-full flex-shrink-0 sm:relative">
         <Link
-          className="w-full h-[600px] object-cover"
+          className="w-full sm:h-[600px] h-[246px] object-cover"
           href={`/details/${movie.id}`}
         >
           <Image
-            className="w-full h-[600px] object-cover"
+            className="w-full sm:h-[600px] h-[246px] object-cover"
             src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
             alt={movie.title}
             width={1440}
@@ -118,16 +120,7 @@ const MovieCarouselItem = ({
         </Link>
         {/* Movie Description Overlay */}
         {/* Desktop overlay (hidden on mobile) */}
-        <div className="hidden md:block absolute bottom-[158px] left-[140px] text-white w-[404px] h-[264px] rounded-2xl">
-          <MovieDescription
-            movie={movie}
-            trailerKey={trailerKey}
-            autoplay={autoplay}
-          />
-        </div>
-
-        {/* Mobile description (shown below the image) */}
-        <div className="block md:hidden absolute p-4 bg-black text-white">
+        <div className="sm:absolute bottom-[158px] left-[140px] text-white w-[404px] h-[264px] rounded-2xl">
           <MovieDescription
             movie={movie}
             trailerKey={trailerKey}
