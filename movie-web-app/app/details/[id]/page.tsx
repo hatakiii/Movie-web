@@ -235,7 +235,7 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
           </Link>
         </div>
         {/* Movie Card Section */}
-        <div className="max-w-[1080px] md:min-h-[372px] md:gap-8 gap-5 flex flex-wrap">
+        <div className="max-w-[1080px] md:min-h-[372px] gap-5 flex flex-wrap">
           {similarMovies.results.slice(0, 5).map((movie) => (
             <MovieCard
               key={movie.id}

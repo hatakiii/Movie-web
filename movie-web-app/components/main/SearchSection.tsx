@@ -53,7 +53,10 @@ export const SearchSection = () => {
                   href={`/details/${movie.id}`}
                   key={movie.id}
                   passHref
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => {
+                    setIsOpen(false);
+                    setSearchValue("");
+                  }}
                 >
                   <SearchSectionResult
                     title={movie.title}
@@ -67,7 +70,10 @@ export const SearchSection = () => {
 
             <Link
               href={`/searchPage?value=${searchValue}`}
-              onClick={() => setIsOpen(false)}
+              onClick={() => {
+                setIsOpen(false);
+                setSearchValue("");
+              }}
             >
               See all results for {searchValue}
             </Link>

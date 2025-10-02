@@ -1,3 +1,5 @@
+"use client";
+import React from "react";
 import Image from "next/image";
 import {
   Card,
@@ -24,18 +26,20 @@ export const MovieCard = ({
   id,
   classStyle,
 }: MovieCardProps) => {
+  const [imgSrc, setImgSrc] = React.useState(
+    `https://image.tmdb.org/t/p/w500${image}`
+  );
   return (
     <Link href={`/details/${id}`}>
-      <Card
-        className={`lg:w-[229.73px] lg:h-[429px] bg-secondary p-0 overflow-hidden gap-2 ${classStyle}`}
-      >
+      <Card className={`bg-secondary p-0 overflow-hidden gap-2 ${classStyle}`}>
         <CardContent className="p-0 h-full w-full overflow-hidden flex justify-center items-center">
           <Image
-            src={`https://image.tmdb.org/t/p/w500/${image}`}
+            src={imgSrc || "no-image-1x1.5.png"}
             alt=""
             width={229}
             height={340}
-            className="object-cover"
+            className="object-scale-down"
+            onError={() => setImgSrc("/no-image-1x1.5.png")}
           />
         </CardContent>
         <CardFooter className="flex flex-col items-start p-2 h-[95px]">
