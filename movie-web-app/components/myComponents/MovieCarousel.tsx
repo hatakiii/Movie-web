@@ -39,7 +39,7 @@ export const MovieCarousel = ({ movies }: MovieCarouselProps) => {
   }, [api]);
 
   return (
-    <div className="w-[100vw] min-h-[600px]">
+    <div className="w-[100vw] h-full">
       <Carousel
         plugins={[autoplay.current]}
         setApi={setApi}
@@ -47,8 +47,8 @@ export const MovieCarousel = ({ movies }: MovieCarouselProps) => {
       >
         <CarouselContent>
           {movies
-            .slice(0, 16)
-            .filter((movie, index) => index !== 0)
+            .slice(0, 15)
+
             .map((movie, index) => (
               <MovieCarouselItem
                 movie={movie}
@@ -57,8 +57,8 @@ export const MovieCarousel = ({ movies }: MovieCarouselProps) => {
               />
             ))}
         </CarouselContent>
-        <CarouselPrevious className="hidden sm:left-11" />
-        <CarouselNext className="hidden sm:right-11" />
+        <CarouselPrevious className="hidden sm:flex left-11" />
+        <CarouselNext className="hidden sm:flex right-11" />
         {/* Dots indicator */}
         <div className="sm:absolute bottom-[37px] left-[calc(45.5%)] flex gap-2">
           {Array.from({ length: count }).map((_, index) => (
@@ -107,11 +107,11 @@ const MovieCarouselItem = ({
     <>
       <CarouselItem className="basis-full flex-shrink-0 sm:relative">
         <Link
-          className="w-full sm:h-[600px] h-[246px] object-cover"
+          className="w-full sm:h-[600px] min-h-[246px] object-cover"
           href={`/details/${movie.id}`}
         >
           <Image
-            className="w-full sm:h-[600px] h-[246px] object-cover"
+            className="w-full sm:h-[600px] min-h-[246px] object-cover"
             src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
             alt={movie.title}
             width={1440}
@@ -120,7 +120,7 @@ const MovieCarouselItem = ({
         </Link>
         {/* Movie Description Overlay */}
         {/* Desktop overlay (hidden on mobile) */}
-        <div className="sm:absolute bottom-[158px] left-[140px] text-white w-[404px] h-[264px] rounded-2xl">
+        <div className="sm:absolute bottom-[158px] left-[140px] dark:text-white w-[404px]  rounded-2xl">
           <MovieDescription
             movie={movie}
             trailerKey={trailerKey}
@@ -141,24 +141,33 @@ const MovieDescription = ({
   trailerKey: string;
   autoplay: React.RefObject<ReturnType<typeof Autoplay>>;
 }) => (
-  <>
-    <div className="w-full h-[24px] text-base font-normal leading-normal">
-      Now Playing:
+  <div className="md:p-0 p-5 w-[100vw]">
+    <div className="flex sm:flex-col flex-row  sm:w-full max-w-[335px] sm:h-full min-h-[52px]">
+      <div className="md:w-full max-w-[252px] sm:h-full h-13 flex-1">
+        <div className="md:w-full max-w-[252px] md:h-[24px] h-5 text-base font-normal leading-normal whitespace-nowrap">
+          Now Playing:
+        </div>
+        <div className="md:w-full max-w-[252px] min-h-[40px] text-2xl md:text-4xl font-bold leading-tight whitespace-nowrap truncate">
+          {movie.title}
+        </div>
+      </div>
+
+      <div className="sm:w-full min-h-[48px] min-w-[83px] sm:text-sm opacity-80 flex items-center text-text-text-foreground text-lg font-semibold">
+        <Image
+          src="star.svg"
+          alt="star"
+          className="pt-2 pb-3 pr-2"
+          width={28}
+          height={28}
+        />
+        {movie.vote_average.toFixed(1)}
+        <span className="text-text-text-muted-foreground text-base font-normal leading-normal">
+          /10
+        </span>
+      </div>
     </div>
-    <div className="w-full min-h-[40px] text-2xl md:text-4xl font-bold leading-tight">
-      {movie.title}
-    </div>
-    <div className="w-full min-h-[48px] text-sm opacity-80 flex items-center gap-2">
-      <Image
-        src="star.svg"
-        alt="star"
-        className="pt-2 pb-3"
-        width={28}
-        height={28}
-      />
-      {movie.vote_average.toFixed(1)}
-    </div>
-    <p className="w-full py-4 text-xs md:text-sm font-normal leading-snug">
+
+    <p className="sm:w-full max-w-[335px]  py-4 text-xs md:text-sm font-normal leading-snug line-clamp-3">
       {movie.overview}
     </p>
 
@@ -180,5 +189,5 @@ const MovieDescription = ({
         <span className="text-sm font-medium">Watch Trailer</span>
       </div>
     </TrailerDialog>
-  </>
+  </div>
 );
