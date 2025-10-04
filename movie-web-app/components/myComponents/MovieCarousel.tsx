@@ -39,7 +39,7 @@ export const MovieCarousel = ({ movies }: MovieCarouselProps) => {
   }, [api]);
 
   return (
-    <div className="w-[100vw] h-full">
+    <div className="w-[100vw] sm:h-full">
       <Carousel
         plugins={[autoplay.current]}
         setApi={setApi}
@@ -60,7 +60,7 @@ export const MovieCarousel = ({ movies }: MovieCarouselProps) => {
         <CarouselPrevious className="hidden sm:flex left-11" />
         <CarouselNext className="hidden sm:flex right-11" />
         {/* Dots indicator */}
-        <div className="sm:absolute bottom-[37px] left-[calc(45.5%)] flex gap-2">
+        <div className="sm:absolute sm:bottom-[37px] sm:top-[555px] hidden left-[calc(45.5%)] sm:flex gap-2">
           {Array.from({ length: count }).map((_, index) => (
             <button
               key={index}
@@ -141,13 +141,13 @@ const MovieDescription = ({
   trailerKey: string;
   autoplay: React.RefObject<ReturnType<typeof Autoplay>>;
 }) => (
-  <div className="md:p-0 p-5 w-[100vw]">
-    <div className="flex sm:flex-col flex-row  sm:w-full max-w-[335px] sm:h-full min-h-[52px]">
-      <div className="md:w-full max-w-[252px] sm:h-full h-13 flex-1">
-        <div className="md:w-full max-w-[252px] md:h-[24px] h-5 text-base font-normal leading-normal whitespace-nowrap">
+  <div className="md:p-0 p-5 sm:w-[404px] w-[100vw] sm:h-[264px] ">
+    <div className="flex sm:flex-col flex-row sm:items-baseline sm:min-w-[404px] max-w-[335px] sm:h-[112px] min-h-[52px]">
+      <div className="sm:max-w-[404px] max-w-[252px] sm:h-full h-13 flex-1">
+        <div className="md:w-full sm:max-w-[404px] max-w-[252px] md:h-[24px] h-5 text-base font-normal leading-normal whitespace-nowrap">
           Now Playing:
         </div>
-        <div className="md:w-full max-w-[252px] min-h-[40px] text-2xl md:text-4xl font-bold leading-tight whitespace-nowrap truncate">
+        <div className="md:w-full sm:max-w-[404px] max-w-[252px] min-h-[40px] text-2xl sm:text-4xl font-bold leading-tight line-clamp-1">
           {movie.title}
         </div>
       </div>
@@ -167,8 +167,8 @@ const MovieDescription = ({
       </div>
     </div>
 
-    <p className="sm:w-full max-w-[335px]  py-4 text-xs md:text-sm font-normal leading-snug line-clamp-3">
-      {movie.overview}
+    <p className="sm:w-full max-w-[335px] h-20 sm:text-xs text-sm font-normal line-clamp-5">
+      {movie.overview ? movie.overview : "No overview found"}
     </p>
 
     <TrailerDialog
@@ -178,7 +178,7 @@ const MovieDescription = ({
         else autoplay.current?.play();
       }}
     >
-      <div className="w-[145px] h-[40px] bg-white text-black rounded-2xl flex gap-2 items-center justify-center cursor-pointer">
+      <div className="w-[145px] h-[40px] bg-white text-black rounded-2xl flex gap-2 items-center justify-center cursor-pointer mt-4">
         <Image
           src="play.svg"
           alt="play"

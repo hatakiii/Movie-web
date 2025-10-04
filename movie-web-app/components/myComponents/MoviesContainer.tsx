@@ -47,7 +47,7 @@ export const MoviesContainer = ({
           </button>
         </Link>
       </div>
-      <div className="w-full h-full md:px-[80px] px-5 md:gap-8 gap-5 flex flex-wrap">
+      <div className="w-full h-full md:px-[80px] px-3 md:gap-8 gap-3 flex flex-wrap">
         {movieArray.slice(0, 10).map((movie) => (
           <Link href={`/details/${movie.id}`} key={movie.id}>
             <Card className="md:w-[229.73px] md:h-[429px] w-[157.5px] h-[309.1px] bg-secondary p-0 overflow-hidden gap-2">
