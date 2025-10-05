@@ -19,7 +19,7 @@ export const SearchSectionResult = ({
   );
   return (
     <div className="flex flex-col">
-      <div className="w-[533px] h-[116px] flex items-center justify-center gap-4 ">
+      <div className="sm:w-[533px] w-full h-[116px] flex items-center justify-center gap-4 ">
         <div className="bg-red-400 w-[67px] h-25">
           <Image
             src={imgSrc || "/fallback.png"}
@@ -30,8 +30,8 @@ export const SearchSectionResult = ({
             onError={() => setImgSrc("/fallback.png")}
           />
         </div>
-        <div className="w-[454px] h-[99px]">
-          <div className="w-[454px] h-[51px]">
+        <div className="sm:w-[454px] w-full h-[99px]">
+          <div className="sm:w-[454px] w-full h-[51px]">
             <div className="w-full h-[28px] text-text-text-foreground text-xl font-semibold leading-7 truncate">
               {title}
             </div>
@@ -54,7 +54,7 @@ export const SearchSectionResult = ({
           </div>
         </div>
       </div>
-      <div className="w-[533px] h-[17px]"></div>
+      <div className="sm:w-[533px] w-full h-[17px]"></div>
     </div>
   );
 };

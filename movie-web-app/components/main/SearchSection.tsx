@@ -31,19 +31,26 @@ export const SearchSection = () => {
     setFoundMovies(foundData);
   };
   return (
-    <div>
+    <div className="h-full">
       <Input
         value={searchValue}
         onChange={handleChange}
         onClick={() => setIsOpen(true)}
-        className="pl-10"
+        className="pl-10 hidden sm:block"
         placeholder="Search.."
+      />
+      <Input
+        value={searchValue}
+        onChange={handleChange}
+        onClick={() => setIsOpen(true)}
+        className="sm:hidden flex w-full pl-10 min-w-0 h-[36px] bg-transparent outline-none border-none"
+        placeholder="Search..."
       />
       <div>
         <Popover open={isOpen} onOpenChange={setIsOpen}>
           <PopoverTrigger></PopoverTrigger>
           <PopoverContent
-            className="w-[577px]"
+            className="sm:w-[577px] w-[100vw]"
             onOpenAutoFocus={(e) => e.preventDefault()}
             onCloseAutoFocus={(e) => e.preventDefault()}
           >

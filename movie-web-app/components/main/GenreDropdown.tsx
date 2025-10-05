@@ -29,15 +29,18 @@ export function GenreDropdown() {
   return (
     <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline">
-          <div className="flex items-center justify-center gap-2">
+        <Button variant="outline" className="w-9 h-9 sm:w-[97px] sm:h-[36px]">
+          <div className="flex items-center justify-center sm:gap-2">
             <ChevronDown />
             <span className="sm:block hidden">Genre</span>
           </div>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-[537px] p-[20px]" align="start">
-        <div className="w-[213px] h-[60px] flex flex-col items-start gap-1">
+      <DropdownMenuContent
+        className="sm:w-[537px] sm:p-[20px] w-[100vw] p-5 mx-5"
+        align="start"
+      >
+        <div className="sm:w-[213px] w-full sm:h-[60px] h-full flex flex-col items-start gap-1">
           <h1 className="text-2xl font-bold">Genres</h1>
           <p>See list of movies by genre</p>
         </div>
