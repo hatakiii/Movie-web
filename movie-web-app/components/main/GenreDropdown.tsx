@@ -37,7 +37,7 @@ export function GenreDropdown() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent
-        className="sm:w-[537px] sm:p-[20px] w-[100vw] p-5 mx-5"
+        className="sm:w-[537px] sm:p-[20px] w-[100vw] p-5"
         align="start"
       >
         <div className="sm:w-[213px] w-full sm:h-[60px] h-full flex flex-col items-start gap-1">
