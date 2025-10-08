@@ -20,7 +20,7 @@ export const SearchSectionResult = ({
   return (
     <div className="flex flex-col">
       <div className="sm:w-[533px] w-full h-[116px] flex items-center justify-center gap-4 ">
-        <div className="bg-red-400 w-[67px] h-25">
+        <div className="bg-red-400 w-[67px] h-25 flex-shrink-0">
           <Image
             src={imgSrc || "/fallback.png"}
             alt=""
@@ -32,7 +32,7 @@ export const SearchSectionResult = ({
         </div>
         <div className="sm:w-[454px] w-full h-[99px]">
           <div className="sm:w-[454px] w-full h-[51px]">
-            <div className="w-full h-[28px] text-text-text-foreground text-xl font-semibold leading-7 truncate">
+            <div className="sm-w-full max-w-[191px] h-[28px] text-text-text-foreground text-xl font-semibold leading-7 truncate">
               {title}
             </div>
             <div className="w-full h-[23px] flex gap-1">
