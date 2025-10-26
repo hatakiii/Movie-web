@@ -59,7 +59,7 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
 
   return (
     <div>
-      <div className="md:max-w-[1080px] w-[100vw]  min-h-[524px] flex flex-col mt-[52px]">
+      <div className="md:max-w-[1080px] w-[100vw]  sm:min-h-[524px] h-full flex flex-col mt-[52px]">
         <div className="w-[100%] min-h-[72px] flex justify-between px-5">
           <div className="min-w-[211px] min-h-[72px]">
             <p className="text-text-text-foreground text-4xl font-bold leading-10">
@@ -93,7 +93,7 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
           </div>
         </div>
         {/* Movie posters */}
-        <div className="w-full h-[428px] flex justify-between mt-6">
+        <div className="sm:w-full sm:h-[428px] flex justify-between mt-6 w-[375px] h-[211px]">
           <div className="hidden lg:block max-w-[290px] max-h-[428px] ">
             <Image
               src={`https://image.tmdb.org/t/p/original${movieDetail.poster_path}`}
@@ -102,12 +102,12 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
               height={428}
             />
           </div>
-          <div className="relative w-full max-w-3xl aspect-video">
+          <div className="relative sm:w-full sm:h-full max-w-3xl aspect-video w-[375px] h-[211px]">
             <Image
               src={`https://image.tmdb.org/t/p/original${movieDetail.backdrop_path}`}
               alt={movieDetail.backdrop_path}
               fill
-              className="object-cover"
+              className="object-cover "
             />
 
             <TrailerDialog YTkey={trailer[0]?.key}>
@@ -129,29 +129,27 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
       </div>
       {/* Description section */}
       <div className="md:max-w-[1080px] w-[100vw]  min-h-[271px] mt-8 px-5">
-        <div className="flex gap-[34px]">
-          <div className="lg:hidden max-w-[100px] max-h-[148px] ">
+        <div className="flex gap-8 items-start">
+          <div className="flex-shrink-0 w-[100px] h-[148px] lg:hidden">
             <Image
               src={`https://image.tmdb.org/t/p/original${movieDetail.poster_path}`}
               alt={movieDetail.poster_path}
-              width={290}
-              height={428}
+              width={100}
+              height={148}
+              className="object-cover rounded-md"
             />
           </div>
-          <div className="flex flex-col">
-            <div className="w-full flex gap-3">
-              {movieDetail.genres.map((genre) => {
-                return (
-                  <Badge className="h-5" key={genre.id}>
-                    {genre.name}
-                  </Badge>
-                );
-              })}
+
+          <div className="flex-1 min-w-0 flex flex-col">
+            <div className="flex flex-wrap gap-3">
+              {movieDetail.genres.map((genre) => (
+                <Badge className="h-5" key={genre.id}>
+                  {genre.name}
+                </Badge>
+              ))}
             </div>
-            <div
-              className="w-full min-h-12 mt-5 text-text-text-foreground text-base font-normal
-"
-            >
+
+            <div className="mt-5 text-text-text-foreground text-base font-normal break-words">
               {movieDetail.overview}
             </div>
           </div>
@@ -235,7 +233,7 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
           </Link>
         </div>
         {/* Movie Card Section */}
-        <div className="max-w-[1080px] md:min-h-[372px] gap-5 flex flex-wrap">
+        <div className="max-w-[1080px] md:min-h-[372px] sm:gap-5 gap-1 flex flex-wrap">
           {similarMovies.results.slice(0, 5).map((movie) => (
             <MovieCard
               key={movie.id}

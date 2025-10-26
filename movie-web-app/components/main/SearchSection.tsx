@@ -46,9 +46,9 @@ export const SearchSection = () => {
         className="sm:hidden flex w-full pl-10 min-w-0 h-[36px] bg-transparent outline-none border-none"
         placeholder="Search..."
       />
-      <div>
+      <div className="relative">
         <Popover open={isOpen} onOpenChange={setIsOpen}>
-          <PopoverTrigger></PopoverTrigger>
+          <PopoverTrigger className="absolute bottom-[2px]"></PopoverTrigger>
           <PopoverContent
             className="sm:w-[577px] w-[100vw]"
             onOpenAutoFocus={(e) => e.preventDefault()}

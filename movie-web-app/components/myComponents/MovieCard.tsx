@@ -47,7 +47,7 @@ export const MovieCard = ({
             <FaStar color="#FDE047" />
             <span>{score}/10</span>
           </CardDescription>
-          <CardTitle>{title}</CardTitle>
+          <CardTitle className="line-clamp-2">{title}</CardTitle>
         </CardFooter>
       </Card>
     </Link>

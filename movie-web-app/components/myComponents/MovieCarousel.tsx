@@ -72,8 +72,6 @@ export const MovieCarousel = ({ movies }: MovieCarouselProps) => {
           ))}
         </div>
       </Carousel>
-      {/* Tab only shows on mobile view */}
-      {/* <TabDescription /> */}
     </div>
   );
 };
@@ -119,7 +117,7 @@ const MovieCarouselItem = ({
           />
         </Link>
         {/* Movie Description Overlay */}
-        {/* Desktop overlay (hidden on mobile) */}
+
         <div className="sm:absolute bottom-[158px] left-[140px] dark:text-white w-[404px]  rounded-2xl">
           <MovieDescription
             movie={movie}
@@ -142,17 +140,18 @@ const MovieDescription = ({
   autoplay: React.RefObject<ReturnType<typeof Autoplay>>;
 }) => (
   <div className="md:p-0 p-5 sm:w-[404px] w-[100vw] sm:h-[264px] ">
-    <div className="flex sm:flex-col flex-row sm:items-baseline sm:min-w-[404px] max-w-[335px] sm:h-[112px] min-h-[52px]">
+    <div className="flex sm:flex-col flex-row sm:items-baseline sm:min-w-[404px] max-w-[335px] sm:h-[112px] min-h-[52px] overflow-hidden">
       <div className="sm:max-w-[404px] max-w-[252px] sm:h-full h-13 flex-1">
         <div className="md:w-full sm:max-w-[404px] max-w-[252px] md:h-[24px] h-5 text-base font-normal leading-normal whitespace-nowrap">
           Now Playing:
         </div>
-        <div className="md:w-full sm:max-w-[404px] max-w-[252px] min-h-[40px] text-2xl sm:text-4xl font-bold leading-tight line-clamp-1">
+
+        <div className="text-2xl sm:text-4xl font-bold leading-tight">
           {movie.title}
         </div>
       </div>
 
-      <div className="sm:w-full min-h-[48px] min-w-[83px] sm:text-sm opacity-80 flex items-center text-text-text-foreground text-lg font-semibold">
+      <div className="sm:w-full min-h-[48px] min-w-[83px] sm:text-sm opacity-80 flex items-center text-foreground text-lg font-semibold">
         <Image
           src="star.svg"
           alt="star"

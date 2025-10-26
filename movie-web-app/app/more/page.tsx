@@ -23,10 +23,10 @@ const MorePage = async ({ searchParams }: MorePageProps) => {
   const movieRes: movieResponseType = await getMoviesList(title, page);
   // console.log("movieRes", movieRes);
   return (
-    <div className="max-w-[1440px] h-full px-[80px] gap-8 flex flex-wrap">
+    <div className="max-w-[1440px] h-full sm:px-[80px] sm:gap-8 gap-3 flex flex-wrap justify-center px-5">
       {movieRes.results.map((movie) => (
         <Link href={`/details/${movie.id}`} key={movie.id}>
-          <Card className="w-[229.73px] h-[429px] bg-secondary p-0 overflow-hidden gap-2">
+          <Card className="w-[157.7px] sm:w-[229.73px] h-[309px] sm:h-[429px] bg-secondary p-0 overflow-hidden gap-2">
             <CardContent className="p-0 h-[340px] overflow-hidden">
               <Image
                 src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
