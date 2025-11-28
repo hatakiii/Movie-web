@@ -69,9 +69,14 @@ export const MoviesContainer = ({
                     width={16}
                     height={16}
                   />
-                  <span>{movie.vote_average}</span>
+                  <div className="text-sm/5">
+                    {movie.vote_average.toFixed(1)}
+                    <span className="text-xs/4 text-[#71717A]">/10</span>
+                  </div>
                 </CardDescription>
-                <CardTitle>{movie.title}</CardTitle>
+                <CardTitle className="text-lg/7  px-1 w-53 h-14">
+                  {movie.title}
+                </CardTitle>
               </CardFooter>
             </Card>
           </Link>
