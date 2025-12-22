@@ -60,8 +60,8 @@ export const MoviesContainer = ({
                 />
               </CardContent>
 
-              <CardFooter className="flex flex-col items-start p-2 md:h-[95px] h-[76px]">
-                <CardDescription className="flex gap-2">
+              <CardFooter className="flex flex-col items-start p-2 md:h-[95px] h-[79px]">
+                <CardDescription className="flex gap-1">
                   <Image
                     src="star.svg"
                     alt="star"
@@ -74,7 +74,7 @@ export const MoviesContainer = ({
                     <span className="text-xs/4 text-[#71717A]">/10</span>
                   </div>
                 </CardDescription>
-                <CardTitle className="text-lg/7  px-1 w-53 h-14">
+                <CardTitle className=" self-stretch text-lg/7  px-1 text-[#09090B] dark:text-[#FAFAFA]">
                   {movie.title}
                 </CardTitle>
               </CardFooter>
