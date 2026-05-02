@@ -39,7 +39,7 @@ export const MovieCarousel = ({ movies }: MovieCarouselProps) => {
   }, [api]);
 
   return (
-    <div className="w-[100vw] sm:h-full">
+    <div className="w-full sm:h-full">
       <Carousel
         plugins={[autoplay.current]}
         setApi={setApi}
@@ -85,27 +85,26 @@ const MovieCarouselItem = ({
 }) => {
   const [trailerKey, setTrailerKey] = React.useState("");
 
-  const getTrailerData = async () => {
-    const movieTrailer: MovieTrailerType = await getMovieTrailer(
-      movie.id.toString()
-    );
-
-    const trailer = movieTrailer.results.filter((trail) =>
-      trail.type.includes("Trailer")
-    );
-    // console.log("Mytrailer", trailer);
-    setTrailerKey(trailer[0]?.key || "");
-  };
-
   React.useEffect(() => {
+    const getTrailerData = async () => {
+      const movieTrailer: MovieTrailerType = await getMovieTrailer(
+        movie.id.toString()
+      );
+
+      const trailer = movieTrailer.results.filter((trail) =>
+        trail.type.includes("Trailer")
+      );
+      setTrailerKey(trailer[0]?.key || "");
+    };
+
     getTrailerData();
-  });
+  }, [movie.id]);
 
   return (
     <>
       <CarouselItem className="basis-full flex-shrink-0 sm:relative">
         <Link
-          className="w-full sm:h-[600px] min-h-[246px] object-cover"
+          className="block w-full sm:h-[600px] min-h-[246px] object-cover"
           href={`/details/${movie.id}`}
         >
           <Image
@@ -118,7 +117,7 @@ const MovieCarouselItem = ({
         </Link>
         {/* Movie Description Overlay */}
 
-        <div className="sm:absolute bottom-[158px] left-[140px] dark:text-white w-[404px]  rounded-2xl">
+        <div className="sm:absolute bottom-[158px] left-[140px] dark:text-white w-full sm:w-[404px] rounded-2xl">
           <MovieDescription
             movie={movie}
             trailerKey={trailerKey}
@@ -139,14 +138,14 @@ const MovieDescription = ({
   trailerKey: string;
   autoplay: React.RefObject<ReturnType<typeof Autoplay>>;
 }) => (
-  <div className="md:p-0 p-5 sm:w-[404px] w-[100vw] sm:h-[264px] ">
-    <div className="flex sm:flex-col flex-row sm:items-baseline sm:min-w-[404px] max-w-[335px] sm:h-[112px] min-h-[52px] overflow-hidden">
+  <div className="p-4 sm:p-0 sm:w-[404px] w-full sm:h-[264px]">
+    <div className="flex sm:flex-col flex-row sm:items-baseline sm:min-w-[404px] w-full sm:h-[112px] min-h-[52px] overflow-hidden">
       <div className="sm:max-w-[404px] max-w-[252px] sm:h-full h-13 flex-1">
         <div className="md:w-full sm:max-w-[404px] max-w-[252px] md:h-[24px] h-5 text-base font-normal leading-normal whitespace-nowrap">
           Now Playing:
         </div>
 
-        <div className="text-2xl sm:text-4xl font-bold leading-tight">
+        <div className="text-xl sm:text-4xl font-bold leading-tight line-clamp-2">
           {movie.title}
         </div>
       </div>
@@ -166,7 +165,7 @@ const MovieDescription = ({
       </div>
     </div>
 
-    <p className="sm:w-full max-w-[335px] h-20 sm:text-xs text-sm font-normal line-clamp-5">
+    <p className="sm:w-full w-full h-20 sm:text-xs text-sm font-normal line-clamp-4 sm:line-clamp-5">
       {movie.overview ? movie.overview : "No overview found"}
     </p>
 

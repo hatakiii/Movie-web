@@ -59,17 +59,17 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
 
   return (
     <div>
-      <div className="md:max-w-[1080px] w-[100vw]  sm:min-h-[524px] h-full flex flex-col mt-[52px]">
-        <div className="w-[100%] min-h-[72px] flex justify-between px-5">
-          <div className="min-w-[211px] min-h-[72px]">
-            <p className="text-text-text-foreground text-4xl font-bold leading-10">
+      <div className="md:max-w-[1080px] w-full sm:min-h-[524px] h-full flex flex-col mt-[52px]">
+        <div className="w-full min-h-[72px] flex justify-between gap-4 px-4 sm:px-5">
+          <div className="min-w-0 min-h-[72px]">
+            <p className="text-text-text-foreground text-2xl sm:text-4xl font-bold leading-tight sm:leading-10">
               {movieDetail.title}
             </p>
-            <h1 className="text-text-text-foreground text-lg font-normal leading-7">
+            <h1 className="text-text-text-foreground text-sm sm:text-lg font-normal leading-6 sm:leading-7">
               {movieDetail.release_date} · PG · {movieDetail.runtime}m
             </h1>
           </div>
-          <div className="min-w-[83px] min-h-[64px]">
+          <div className="min-w-[83px] min-h-[64px] shrink-0">
             <p className="w-[83px] h-[16px] text-text-text-foreground text-xs font-medium">
               Rating
             </p>
@@ -93,7 +93,7 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
           </div>
         </div>
         {/* Movie posters */}
-        <div className="sm:w-full sm:h-[428px] flex justify-between mt-6 w-[375px] h-[211px]">
+        <div className="sm:w-full sm:h-[428px] flex justify-between mt-6 w-full h-auto">
           <div className="hidden lg:block max-w-[290px] max-h-[428px] ">
             <Image
               src={`https://image.tmdb.org/t/p/original${movieDetail.poster_path}`}
@@ -102,22 +102,22 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
               height={428}
             />
           </div>
-          <div className="relative sm:w-full sm:h-full max-w-3xl aspect-video w-[375px] h-[211px]">
+          <div className="relative sm:w-full sm:h-full w-full max-w-3xl aspect-video">
             <Image
               src={`https://image.tmdb.org/t/p/original${movieDetail.backdrop_path}`}
               alt={movieDetail.backdrop_path}
               fill
-              className="object-cover "
+              className="object-cover rounded-none sm:rounded-md"
             />
 
             <TrailerDialog YTkey={trailer[0]?.key}>
               {
                 <div
-                  className="max-w-[174px] max-h-[40px] absolute left-6 bottom-6 flex justify-between items-center"
+                  className="absolute left-4 bottom-4 sm:left-6 sm:bottom-6 h-10 px-3 sm:px-0 sm:max-w-[174px] sm:max-h-[40px] flex gap-2 justify-between items-center rounded-full bg-black/55 sm:bg-transparent backdrop-blur-sm sm:backdrop-blur-0"
                   aria-controls="radix-_R_kpbn5ritqlb_"
                 >
-                  <MdOutlinePlayCircleFilled className="w-10 h-10" />
-                  <p className="w-20 h-6 text-white text-base font-normal align-middle justify-center">
+                  <MdOutlinePlayCircleFilled className="w-7 h-7 sm:w-10 sm:h-10 text-white" />
+                  <p className="w-auto h-6 text-white text-sm sm:text-base font-normal align-middle justify-center">
                     Play trailer
                   </p>
                   <p className="w-7.5 h-5 text-white text-sm font-normal align-middle justify-center"></p>
@@ -128,7 +128,7 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
         </div>
       </div>
       {/* Description section */}
-      <div className="md:max-w-[1080px] w-[100vw]  min-h-[271px] mt-8 px-5">
+      <div className="md:max-w-[1080px] w-full min-h-[271px] mt-8 px-4 sm:px-5">
         <div className="flex gap-8 items-start">
           <div className="flex-shrink-0 w-[100px] h-[148px] lg:hidden">
             <Image
@@ -206,7 +206,7 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
         </div>
       </div>
       {/* More Like This */}
-      <div className="md:max-w-[1080px] w-[100vw]  min-h-[440px] mt-8 px-5">
+      <div className="md:max-w-[1080px] w-full min-h-[440px] mt-8 px-4 sm:px-5">
         <div className="w-full h-[36px] flex place-content-between items-center mb-[32px]">
           <span className="w-full h-[32px] justify-start text-text-text-foreground text-2xl font-semibold leading-loose flex items-center">
             More like this
